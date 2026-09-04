@@ -713,3 +713,9 @@
     transparent
   ) !important;
 }
+
+
+/* Écarte le panneau des comptes de la navbar */
+.sidebar #switcheroo .cj-switcheroo-dropdown {
+  right: calc(100% + 24px) !important;
+}
