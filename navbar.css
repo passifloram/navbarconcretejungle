@@ -1152,3 +1152,70 @@
     transition-duration: .01ms !important;
   }
 }
+
+
+
+/* =========================================================
+   PASTILLE DE NOTIFICATION
+   ========================================================= */
+
+.navbar #fa_notifications {
+  --notif-dot: var(--contrastDark, #302c2a);
+  position: relative !important;
+}
+
+/* Cachée lorsqu’il n’y a aucune notification */
+.navbar #fa_notifications #notif_unread {
+  display: none !important;
+}
+
+/* Visible uniquement quand Forumactif ajoute un nombre */
+.navbar #fa_notifications #notif_unread:not(:empty) {
+  position: absolute !important;
+  top: 5px !important;
+  left: 23px !important;
+  z-index: 2;
+
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 9px !important;
+  min-width: 9px !important;
+  height: 9px !important;
+  min-height: 9px !important;
+  padding: 0 !important;
+
+  overflow: hidden;
+  color: transparent !important;
+  background: var(--notif-dot) !important;
+  border: 2px solid var(--neutral) !important;
+  border-radius: 50% !important;
+
+  font-size: 0 !important;
+  line-height: 0 !important;
+  pointer-events: none;
+
+  animation: cj-notification-pop .32s
+    cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Pastille claire en mode sombre */
+[data-color-scheme="dark"] .navbar #fa_notifications {
+  --notif-dot: var(--contrastLight, #f4f1ed);
+}
+
+@keyframes cj-notification-pop {
+  0% {
+    opacity: 0;
+    transform: scale(.35);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
