@@ -270,3 +270,47 @@
   transform: translateX(-50%) !important;
   z-index: 1000 !important;
 }
+
+/* Barre latérale droite */
+.sidebar_bottom {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 997;
+
+  box-sizing: border-box;
+  width: 55px;
+  padding: 9px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  background: var(--neutral);
+  border-radius: 8px 0 0 8px;
+  transform: translateY(-50%);
+}
+
+/* Boutons */
+.sidebar_bottom > a {
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--accentClr);
+  background: var(--neutralDark);
+  border-radius: 7px;
+  text-decoration: none;
+
+  font-size: 16px;
+  transition: background .2s, color .2s;
+}
+
+.sidebar_bottom > a:hover {
+  color: var(--textColor);
+  background: var(--neutral);
+}
