@@ -395,6 +395,7 @@
   box-sizing: border-box !important;
   width: 250px !important;
   min-width: 250px !important;
+  max-width: 250px !important;
   height: auto !important;
   max-height: none !important;
   padding: 10px !important;
@@ -433,7 +434,8 @@
   align-items: stretch !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  min-width: 0 !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
   margin: 0 !important;
@@ -451,21 +453,21 @@
 .sidebar #switcheroo .cj-switcheroo-dropdown__list > .switcheroo__squircle {
   position: relative !important;
   inset: auto !important;
-  display: flex !important;
+  display: grid !important;
   flex: 0 0 54px !important;
-  flex-direction: row !important;
+  grid-template-columns: 40px minmax(0, 1fr) 20px !important;
   align-items: center !important;
-  justify-content: flex-start !important;
+  justify-content: stretch !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  min-width: 0 !important;
-  max-width: none !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
   height: 54px !important;
   min-height: 54px !important;
   max-height: 54px !important;
   margin: 0 !important;
-  padding: 6px 36px 6px 7px !important;
-  gap: 12px !important;
+  padding: 6px 7px !important;
+  column-gap: 12px !important;
   overflow: visible !important;
   color: inherit !important;
   background: transparent !important;
@@ -517,7 +519,7 @@
 
 .sidebar #switcheroo .cj-switcheroo-dropdown .switcheroo__avatar {
   display: block !important;
-  flex: 0 0 40px !important;
+  grid-column: 1 !important;
   box-sizing: border-box !important;
   width: 40px !important;
   min-width: 40px !important;
@@ -557,8 +559,8 @@
   position: static !important;
   inset: auto !important;
   display: block !important;
-  flex: 1 1 auto !important;
-  width: auto !important;
+  grid-column: 2 !important;
+  width: 100% !important;
   min-width: 0 !important;
   max-width: none !important;
   height: auto !important;
@@ -603,7 +605,7 @@
 .sidebar #switcheroo .cj-switcheroo-dropdown
 .switcheroo__squircle--button > i {
   display: grid !important;
-  flex: 0 0 40px !important;
+  grid-column: 1 !important;
   place-items: center !important;
   width: 40px !important;
   min-width: 40px !important;
@@ -615,11 +617,11 @@
 }
 
 .sidebar #switcheroo .cj-switcheroo-dropdown .switcheroo__delete {
-  position: absolute !important;
-  top: 50% !important;
-  right: 9px !important;
+  position: static !important;
+  inset: auto !important;
   z-index: 20 !important;
   display: grid !important;
+  grid-column: 3 !important;
   place-items: center !important;
   box-sizing: border-box !important;
   width: 20px !important;
@@ -641,14 +643,14 @@
   visibility: visible !important;
   pointer-events: auto !important;
   cursor: pointer !important;
-  transform: translateY(-50%) scale(.92) !important;
+  transform: scale(.92) !important;
   transition: opacity .2s ease, transform .22s ease !important;
 }
 
 .sidebar #switcheroo .cj-switcheroo-dropdown
 .switcheroo__squircle:hover .switcheroo__delete {
   opacity: 1 !important;
-  transform: translateY(-50%) scale(1) !important;
+  transform: scale(1) !important;
 }
 
 /* =========================================================
@@ -1137,6 +1139,7 @@
   .sidebar #switcheroo .cj-switcheroo-dropdown {
     width: calc(100vw - 100px) !important;
     min-width: 0 !important;
+    max-width: calc(100vw - 100px) !important;
   }
 }
 
