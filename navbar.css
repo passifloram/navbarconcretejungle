@@ -719,3 +719,468 @@
 .sidebar #switcheroo .cj-switcheroo-dropdown {
   right: calc(100% + 24px) !important;
 }
+
+
+
+/* =========================================================
+   FORUMACTIF MESSENGER — CONCRETE JUNGLE
+   ========================================================= */
+
+#FAM {
+  --fam-accent: #bd6936;
+  --fam-accent-soft: rgba(189, 105, 54, .12);
+  --fam-bg: #f3f0ec;
+  --fam-panel: #fff;
+  --fam-text: #302c2a;
+  --fam-muted: #8d827b;
+  --fam-line: rgba(48, 44, 42, .12);
+
+  position: fixed !important;
+  right: 75px !important;
+  bottom: 18px !important;
+
+  display: flex !important;
+  flex-direction: column;
+  width: min(430px, calc(100vw - 105px)) !important;
+  height: min(610px, calc(100vh - 36px)) !important;
+
+  overflow: hidden;
+  color: var(--fam-text) !important;
+  background: var(--fam-bg) !important;
+  border: 1px solid var(--fam-line) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 18px 50px rgba(35, 28, 24, .22) !important;
+  font-family: inherit !important;
+
+  transform-origin: right bottom;
+  transition:
+    opacity .2s ease,
+    transform .2s ease,
+    visibility .2s ease !important;
+
+  z-index: 99999 !important;
+}
+
+/* Mode sombre */
+
+[data-color-scheme="dark"] #FAM {
+  --fam-accent: #6572f3;
+  --fam-accent-soft: rgba(101, 114, 243, .16);
+  --fam-bg: #17181d;
+  --fam-panel: #202127;
+  --fam-text: #eeeef3;
+  --fam-muted: #999ba8;
+  --fam-line: rgba(255, 255, 255, .09);
+
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .5) !important;
+}
+
+/* Animation d’ouverture */
+
+#FAM[data-hidden="true"] {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transform: translateX(18px) scale(.98) !important;
+}
+
+#FAM[data-hidden="false"] {
+  visibility: visible !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  transform: translateX(0) scale(1) !important;
+}
+
+/* Barre supérieure */
+
+#FAM-toolbar {
+  flex: 0 0 auto;
+  background: var(--fam-panel) !important;
+  border-bottom: 1px solid var(--fam-line) !important;
+}
+
+#FAM-toolbar-inner {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 14px !important;
+}
+
+#FAM .FAM-maintitle {
+  flex: 1;
+  min-width: 0;
+  margin: 0 !important;
+
+  overflow: hidden;
+  color: var(--fam-text) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: .06em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#FAM .FAM-toolbar-button {
+  display: grid !important;
+  place-items: center;
+  flex: 0 0 34px;
+  width: 34px !important;
+  height: 34px !important;
+
+  color: var(--fam-accent) !important;
+  background: transparent !important;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+
+#FAM .FAM-toolbar-button:hover {
+  background: var(--fam-accent-soft) !important;
+  transform: translateY(-1px);
+}
+
+/* Menu des paramètres */
+
+#FAM-menu {
+  position: absolute !important;
+  top: 49px !important;
+  right: 12px !important;
+  z-index: 10;
+
+  display: flex;
+  gap: 5px;
+  padding: 7px !important;
+
+  background: var(--fam-panel) !important;
+  border: 1px solid var(--fam-line) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .18) !important;
+}
+
+#FAM .FAM-menu-option {
+  display: grid !important;
+  place-items: center;
+  width: 34px !important;
+  height: 34px !important;
+
+  color: var(--fam-muted) !important;
+  background: transparent !important;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#FAM .FAM-menu-option:hover {
+  color: var(--fam-accent) !important;
+  background: var(--fam-accent-soft) !important;
+}
+
+#FAM-menu-avatar,
+#FAM-menu-avatar img {
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: cover;
+  border-radius: 7px !important;
+}
+
+/* Onglets */
+
+#FAM-tab-container {
+  display: flex !important;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 43px;
+
+  background: var(--fam-panel) !important;
+  border-bottom: 1px solid var(--fam-line) !important;
+}
+
+#FAM-tabs {
+  display: flex !important;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#FAM-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+#FAM .FAM-tab {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  min-width: 130px;
+  max-width: 190px;
+  padding: 11px 13px !important;
+
+  color: var(--fam-muted) !important;
+  background: transparent !important;
+  border-right: 1px solid var(--fam-line) !important;
+  cursor: pointer;
+}
+
+#FAM .FAM-tab-active {
+  color: var(--fam-accent) !important;
+  background: var(--fam-accent-soft) !important;
+}
+
+#FAM .FAM-tab-name {
+  flex: 1;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#FAM .FAM-tab-close {
+  opacity: .45;
+  transition: opacity .18s ease;
+}
+
+#FAM .FAM-tab-close:hover {
+  opacity: 1;
+}
+
+#FAM-tab-add {
+  display: grid !important;
+  place-items: center;
+  flex: 0 0 42px;
+  height: 42px;
+
+  color: var(--fam-accent) !important;
+  cursor: pointer;
+}
+
+#FAM-tab-add:hover {
+  background: var(--fam-accent-soft) !important;
+}
+
+/* Contenu */
+
+#FAM-content {
+  flex: 1 1 auto !important;
+  min-height: 0;
+  padding: 12px !important;
+
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: var(--fam-bg) !important;
+
+  scrollbar-color: var(--fam-accent) transparent;
+  scrollbar-width: thin;
+}
+
+#FAM-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+#FAM-content::-webkit-scrollbar-thumb {
+  background: var(--fam-accent);
+  border-radius: 10px;
+}
+
+/* Forums et conversations */
+
+#FAM .FAM-chat {
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 3px 11px;
+
+  margin-bottom: 8px !important;
+  padding: 11px !important;
+
+  color: var(--fam-text) !important;
+  background: var(--fam-panel) !important;
+  border: 1px solid transparent !important;
+  border-radius: 13px !important;
+  cursor: pointer;
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    transform .18s ease;
+}
+
+#FAM .FAM-chat:hover {
+  background: var(--fam-accent-soft) !important;
+  border-color: var(--fam-accent) !important;
+  transform: translateX(3px);
+}
+
+/* L’avatar suffit : suppression du gros pictogramme */
+
+#FAM .FAM-chat-icon {
+  display: none !important;
+}
+
+#FAM .FAM-chat-avatar {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+#FAM .FAM-chat-avatar,
+#FAM .FAM-chat-avatar img {
+  width: 42px !important;
+  height: 42px !important;
+  object-fit: cover;
+  border-radius: 11px !important;
+}
+
+#FAM .FAM-chat-title {
+  grid-column: 2;
+  grid-row: 1;
+
+  overflow: hidden;
+  align-self: end;
+  color: var(--fam-text) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#FAM .FAM-chat-date {
+  grid-column: 2;
+  grid-row: 2;
+
+  overflow: hidden;
+  align-self: start;
+  color: var(--fam-muted) !important;
+  font-size: 10px !important;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Messages */
+
+#FAM .FAM-msg {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: end;
+  gap: 9px;
+
+  margin: 12px 0 !important;
+}
+
+#FAM .FAM-msg-avatar,
+#FAM .FAM-msg-avatar img {
+  width: 34px !important;
+  height: 34px !important;
+  object-fit: cover;
+  border-radius: 10px !important;
+}
+
+#FAM .FAM-msg-box {
+  min-width: 0;
+}
+
+#FAM .FAM-msg-name {
+  margin: 0 0 4px 4px;
+  color: var(--fam-accent) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+
+#FAM .FAM-msg-content {
+  padding: 10px 12px !important;
+  color: var(--fam-text) !important;
+  background: var(--fam-panel) !important;
+  border: 1px solid var(--fam-line) !important;
+  border-radius: 13px 13px 13px 4px !important;
+}
+
+#FAM .FAM-msg-text {
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+}
+
+#FAM .FAM-msg-date {
+  margin: 4px 0 0 4px;
+  color: var(--fam-muted) !important;
+  font-size: 9px !important;
+}
+
+#FAM .FAM-msg-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+#FAM .FAM-msg-button {
+  display: grid !important;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+
+  color: var(--fam-muted) !important;
+  background: transparent !important;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+#FAM .FAM-msg-button:hover {
+  color: var(--fam-accent) !important;
+  background: var(--fam-accent-soft) !important;
+}
+
+/* Zone de réponse */
+
+#FAM-actions {
+  flex: 0 0 auto;
+  padding: 10px !important;
+  background: var(--fam-panel) !important;
+  border-top: 1px solid var(--fam-line) !important;
+}
+
+#FAM input,
+#FAM textarea,
+#FAM select {
+  box-sizing: border-box;
+  color: var(--fam-text) !important;
+  background: var(--fam-bg) !important;
+  border: 1px solid var(--fam-line) !important;
+  border-radius: 10px !important;
+  outline: none !important;
+}
+
+#FAM textarea {
+  padding: 10px 12px !important;
+  resize: none;
+}
+
+#FAM input:focus,
+#FAM textarea:focus,
+#FAM select:focus {
+  border-color: var(--fam-accent) !important;
+  box-shadow: 0 0 0 3px var(--fam-accent-soft) !important;
+}
+
+#FAM button,
+#FAM .FAM-button,
+#FAM .FAM-button-large {
+  color: #fff !important;
+  background: var(--fam-accent) !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+  font-weight: 700;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  #FAM {
+    right: 68px !important;
+    bottom: 10px !important;
+    width: calc(100vw - 82px) !important;
+    height: calc(100vh - 20px) !important;
+    border-radius: 14px !important;
+  }
+}
