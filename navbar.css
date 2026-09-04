@@ -653,3 +653,63 @@
     height: calc(100vh - 10px) !important;
   }
 }
+
+
+/* Sidebar totalement transparente */
+.sidebar,
+.sidebar_top,
+.sidebar_bottom {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Boutons transparents par défaut */
+.sidebar .switch-theme,
+.sidebar .color-scheme-toggle,
+.sidebar .forum-layout-toggle,
+.sidebar .switcheroo__squircle,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open,
+.sidebar .sidebar_bottom > a {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Supprime aussi le fond interne de Switcheroo */
+.sidebar .switcheroo__squircle::before {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Fond uniquement au survol ou au clavier */
+.sidebar .color-scheme-toggle:hover,
+.sidebar .forum-layout-toggle:hover,
+.sidebar .switcheroo__squircle:hover,
+.sidebar #FAM-button:hover,
+.sidebar #FAM-button-open:hover,
+.sidebar .sidebar_bottom > a:hover,
+.sidebar .color-scheme-toggle:focus-visible,
+.sidebar .forum-layout-toggle:focus-visible,
+.sidebar .switcheroo__squircle:focus-visible,
+.sidebar #FAM-button:focus-visible,
+.sidebar #FAM-button-open:focus-visible,
+.sidebar .sidebar_bottom > a:focus-visible {
+  background: color-mix(
+    in srgb,
+    currentColor 14%,
+    transparent
+  ) !important;
+  border-color: transparent !important;
+}
+
+/* Fond du bouton Switcheroo au survol */
+.sidebar .switcheroo__squircle:hover::before,
+.sidebar .switcheroo__squircle:focus-visible::before {
+  background: color-mix(
+    in srgb,
+    currentColor 14%,
+    transparent
+  ) !important;
+}
