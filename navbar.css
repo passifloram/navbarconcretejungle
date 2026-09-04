@@ -51,7 +51,7 @@
   border-radius: 7px;
 
   font-family: var(--fontone);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 36px;
   text-transform: lowercase;
   text-decoration: none;
@@ -240,7 +240,7 @@
 .navbar #fa_notifications:hover,
 .navbar #fa_notifications:focus-visible {
   justify-content: flex-start !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
 }
 
 /* Espacement entre l’icône et le libellé ouvert */
@@ -930,7 +930,7 @@
 #FAM .FAM-tab-name {
   flex: 1;
   overflow: hidden;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1038,7 +1038,7 @@
   overflow: hidden;
   align-self: end;
   color: var(--fam-text) !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
   font-weight: 800 !important;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1051,7 +1051,7 @@
   overflow: hidden;
   align-self: start;
   color: var(--fam-muted) !important;
-  font-size: 10px !important;
+  font-size: 12px !important;
   line-height: 1.35;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1083,7 +1083,7 @@
 #FAM .FAM-msg-name {
   margin: 0 0 4px 4px;
   color: var(--fam-accent) !important;
-  font-size: 10px !important;
+  font-size: 13px !important;
   font-weight: 800 !important;
 }
 
@@ -1096,14 +1096,14 @@
 }
 
 #FAM .FAM-msg-text {
-  font-size: 12px !important;
+  font-size: 13px !important;
   line-height: 1.55 !important;
 }
 
 #FAM .FAM-msg-date {
   margin: 4px 0 0 4px;
   color: var(--fam-muted) !important;
-  font-size: 9px !important;
+  font-size: 11px !important;
 }
 
 #FAM .FAM-msg-actions {
