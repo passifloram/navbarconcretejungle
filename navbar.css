@@ -1130,3 +1130,29 @@
 .navbar #search_menu {
   font-size: 12px !important;
 }
+
+/* Navbar — fermeture lente et douce */
+.navbar a.mainmenu {
+  transition:
+    max-width .58s cubic-bezier(.25, .1, .25, 1),
+    font-size .2s ease .12s,
+    background-color .32s ease,
+    color .28s ease,
+    box-shadow .32s ease !important;
+}
+
+/* Ouverture douce, légèrement plus rapide que la fermeture */
+.navbar a.mainmenu:hover,
+.navbar a.mainmenu:focus-visible {
+  transition:
+    max-width .45s cubic-bezier(.25, .1, .25, 1),
+    font-size .2s ease .05s,
+    background-color .28s ease,
+    color .25s ease,
+    box-shadow .28s ease !important;
+}
+
+/* Espacement icône/libellé synchronisé */
+.navbar a.mainmenu::before {
+  transition: margin-right .38s ease !important;
+}
