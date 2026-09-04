@@ -1399,3 +1399,52 @@
     height: 42px !important;
   }
 }
+
+
+/* Scroll interne des messages Messenger */
+#FAM {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+#FAM-toolbar,
+#FAM-tab-container {
+  flex: 0 0 auto;
+}
+
+#FAM .FAM-container-content {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#FAM #FAM-content {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+#FAM #FAM-actions {
+  flex: 0 0 auto;
+}
+
+/* Scrollbar */
+#FAM #FAM-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+#FAM #FAM-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#FAM #FAM-content::-webkit-scrollbar-thumb {
+  background: var(--accentClr);
+  border-radius: 999px;
+}
