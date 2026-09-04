@@ -1285,3 +1285,100 @@
     transform: scale(1);
   }
 }
+
+
+/* Forumactif Messenger — liste des forums compacte et lisible */
+#FAM #FAM-content {
+  padding: 6px;
+}
+
+#FAM .FAM-chat {
+  display: grid !important;
+  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 2px;
+  width: 100%;
+  min-height: 64px;
+  height: auto !important;
+  margin: 0 0 6px !important;
+  padding: 8px 10px !important;
+}
+
+#FAM .FAM-chat:last-child {
+  margin-bottom: 0 !important;
+}
+
+#FAM .FAM-chat-icon {
+  display: none !important;
+}
+
+#FAM .FAM-chat-avatar {
+  position: static !important;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 46px !important;
+  height: 46px !important;
+  margin: 0 !important;
+  overflow: hidden;
+  border-radius: 11px;
+}
+
+#FAM .FAM-chat-avatar img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+#FAM .FAM-chat-title,
+#FAM .FAM-chat-date {
+  position: static !important;
+  left: auto !important;
+  width: auto !important;
+  min-width: 0;
+  padding: 0 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#FAM .FAM-chat-title {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+  font-size: 16px !important;
+  line-height: 1.15 !important;
+  font-weight: 700;
+}
+
+#FAM .FAM-chat-date {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  font-size: 13.5px !important;
+  line-height: 1.3 !important;
+  opacity: .78;
+}
+
+#FAM .FAM-chat-separator {
+  padding: 0 .35em;
+  opacity: .55;
+}
+
+@media (max-width: 520px) {
+  #FAM .FAM-chat {
+    grid-template-columns: 42px minmax(0, 1fr);
+    min-height: 60px;
+    padding: 7px 8px !important;
+  }
+
+  #FAM .FAM-chat-avatar {
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
