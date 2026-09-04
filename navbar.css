@@ -1219,3 +1219,69 @@
     transform: scale(1);
   }
 }
+
+
+/* =========================================================
+   PASTILLE DE NOTIFICATION — VERSION CORRIGÉE
+   ========================================================= */
+
+.navbar #fa_notifications {
+  --notif-dot: var(--contrastDark, #302c2a);
+  position: relative !important;
+}
+
+/* Pastille masquée par défaut */
+.navbar #fa_notifications::after {
+  content: "";
+
+  position: absolute !important;
+  top: 5px !important;
+  left: 23px !important;
+  z-index: 5;
+
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+
+  background: var(--notif-dot);
+  border: 2px solid var(--neutral);
+  border-radius: 50%;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+
+  transition:
+    opacity .2s ease,
+    transform .3s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Forumactif ajoute .unread quand une notification est présente */
+.navbar #fa_notifications.unread::after {
+  opacity: 1;
+  transform: scale(1);
+  animation: cj-notification-pop .35s
+    cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Pastille claire sur le thème sombre */
+[data-color-scheme="dark"] .navbar #fa_notifications {
+  --notif-dot: var(--contrastLight, #f4f1ed);
+}
+
+@keyframes cj-notification-pop {
+  0% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
