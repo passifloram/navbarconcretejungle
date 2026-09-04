@@ -1,0 +1,222 @@
+/* ==================================================
+   NAVBAR
+   ================================================== */
+
+.navbar {
+  position: fixed !important;
+  inset: 0 0 auto !important;
+  z-index: 998;
+
+  box-sizing: border-box;
+  width: 100% !important;
+  height: 55px !important;
+  margin: 0 !important;
+  padding: 9px !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  background: var(--neutral);
+  font-size: 0;
+}
+
+/* Forumactif crée un li séparé pour chaque lien */
+.navbar > li {
+  display: contents;
+}
+
+/* ==================================================
+   BOUTONS
+   ================================================== */
+
+.navbar a.mainmenu,
+.navbar #fa_notifications {
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  max-width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0 10px !important;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  color: var(--textColor);
+  background: var(--neutralDark);
+  border-radius: 7px;
+
+  font-family: var(--fontone);
+  font-size: 11px;
+  line-height: 36px;
+  text-transform: lowercase;
+  text-decoration: none;
+
+  transition:
+    max-width 0.4s ease,
+    background-color 0.2s ease;
+}
+
+.navbar a.mainmenu {
+  display: inline-flex;
+}
+
+.navbar #fa_notifications {
+  display: inline-flex !important;
+}
+
+/* Dépliage des libellés */
+.navbar a.mainmenu:hover,
+.navbar a.mainmenu:focus-visible,
+.navbar #fa_notifications:hover,
+.navbar #fa_notifications:focus-visible {
+  justify-content: flex-start;
+  width: auto;
+  max-width: 180px;
+  padding-right: 14px !important;
+  background: var(--neutral);
+}
+
+/* Images natives Forumactif */
+.navbar a.mainmenu img {
+  display: none !important;
+}
+
+/* ==================================================
+   ICÔNES
+   ================================================== */
+
+.navbar a.mainmenu::before,
+.navbar #fa_notifications::before {
+  content: var(--nav-icon);
+
+  flex: 0 0 16px;
+  width: 16px;
+  margin: 0;
+
+  color: var(--accentClr);
+  font-family: "cappuccicons";
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Espace entre l’icône et le texte au dépliage */
+.navbar a.mainmenu:hover::before,
+.navbar a.mainmenu:focus-visible::before,
+.navbar #fa_notifications:hover::before,
+.navbar #fa_notifications:focus-visible::before {
+  margin-right: 10px;
+}
+
+/* Accueil */
+.navbar a[href="/"],
+.navbar a[href="/forum"] {
+  --nav-icon: "\eb0d";
+  order: 1;
+}
+
+/* Recherche */
+.navbar a[href^="/search"] {
+  --nav-icon: "\ec5f";
+  order: 2;
+}
+
+/* Membres */
+.navbar a[href^="/memberlist"] {
+  --nav-icon: "\e9c2";
+  order: 3;
+}
+
+/* Édition du profil */
+.navbar a[href^="/profile"] {
+  --nav-icon: "\ea7d";
+  order: 4;
+}
+
+/* Messagerie */
+.navbar a[href^="/privmsg"] {
+  --nav-icon: "\ea8b";
+  order: 5;
+}
+
+/* Notifications */
+.navbar #fa_notifications {
+  --nav-icon: "\e95a";
+  order: 6;
+}
+
+/* Connexion */
+.navbar a[href^="/login"]:not(#logout) {
+  --nav-icon: "\ec19";
+  order: 7;
+}
+
+/* Déconnexion */
+.navbar #logout {
+  --nav-icon: "\ea92";
+  order: 7;
+}
+
+/* Inscription */
+.navbar a[href^="/register"] {
+  --nav-icon: "\e903";
+  order: 8;
+}
+
+/* ==================================================
+   LIENS MASQUÉS
+   Cette partie doit rester après le style des boutons
+   ================================================== */
+
+.navbar a[href^="/faq"],
+.navbar a[href^="/calendar"],
+.navbar a[href^="/groups"],
+.navbar a[href^="/images"],
+.navbar a[href^="/portal"],
+.navbar a[href^="/discover"] {
+  display: none !important;
+}
+
+/* ==================================================
+   TOOLBAR ET NOTIFICATIONS
+   ================================================== */
+
+/* Masque le doublon “Bienvenue” */
+#fa_welcome,
+#fa_menulist,
+#fa_usermenu,
+.fa_avatar {
+  display: none !important;
+}
+
+/* Le conteneur conserve le fonctionnement Forumactif */
+#fa_right {
+  position: fixed !important;
+  inset: 0 0 auto auto !important;
+  z-index: 999;
+
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+}
+
+/* Liste ouverte sous la navbar */
+#notif_list {
+  position: fixed !important;
+  top: 55px !important;
+  left: 50% !important;
+  right: auto !important;
+  z-index: 1000 !important;
+
+  box-sizing: border-box;
+  width: min(380px, calc(100vw - 30px)) !important;
+  transform: translateX(-50%);
+}
