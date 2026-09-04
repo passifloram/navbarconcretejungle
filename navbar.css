@@ -1405,3 +1405,307 @@
     transform: none;
   }
 }
+
+
+/* ==================================================
+   SWITCHEROO — AVATAR + NOM
+   ================================================== */
+
+/* Fenêtre des personnages */
+.sidebar #switcheroo .cj-switcheroo-dropdown {
+  position: absolute !important;
+  top: 50% !important;
+  right: calc(100% + 18px) !important;
+  left: auto !important;
+
+  width: min(240px, calc(100vw - 100px)) !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 8px !important;
+
+  background: var(--neutral, #f2efeb) !important;
+  border: 1px solid rgba(90, 75, 68, 0.12) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 25px rgba(45, 35, 30, 0.16) !important;
+
+  overflow: visible !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translate(14px, -50%) scale(0.97);
+  transform-origin: right center;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.42s;
+}
+
+/* Ouverture */
+.sidebar #switcheroo.cj-switcheroo-expanded .cj-switcheroo-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translate(0, -50%) scale(1);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+/* Liste verticale sans scroll */
+.sidebar #switcheroo .cj-switcheroo-dropdown__list {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  overflow: visible !important;
+}
+
+/* Une ligne de personnage */
+.sidebar #switcheroo .cj-switcheroo-dropdown__list
+> .switcheroo__squircle {
+  position: relative !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 11px !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: 58px !important;
+  min-height: 58px !important;
+
+  padding: 7px 38px 7px 7px !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  outline: 0 !important;
+
+  overflow: visible !important;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateX(10px);
+
+  transition:
+    opacity 0.28s ease,
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.22s ease;
+}
+
+/* Apparition douce des lignes */
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list > .switcheroo__squircle {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Petit décalage progressif */
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list > :nth-child(2) {
+  transition-delay: 0.025s;
+}
+
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list > :nth-child(3) {
+  transition-delay: 0.05s;
+}
+
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list > :nth-child(4) {
+  transition-delay: 0.075s;
+}
+
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list > :nth-child(n + 5) {
+  transition-delay: 0.1s;
+}
+
+/* Survol de la ligne complète */
+.sidebar #switcheroo .cj-switcheroo-dropdown__list
+> .switcheroo__squircle:hover {
+  background: rgba(189, 105, 54, 0.1) !important;
+}
+
+/* Avatar */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__avatar {
+  flex: 0 0 44px !important;
+
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  aspect-ratio: 1 !important;
+
+  border-radius: 7px !important;
+  overflow: hidden !important;
+}
+
+/* Image de l’avatar */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__avatar img {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: cover !important;
+  border-radius: inherit !important;
+
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle:hover .switcheroo__avatar img {
+  transform: scale(1.06) !important;
+}
+
+/* Le tooltip devient le nom affiché à côté */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle > .switcheroo__popper {
+  position: static !important;
+
+  display: block !important;
+  flex: 1 1 auto !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  color: var(--textColor, #403833) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Suppression de la flèche de l’ancien tooltip */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle > .switcheroo__popper::before {
+  display: none !important;
+}
+
+/* Nom du personnage */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__popper-text {
+  display: block !important;
+
+  overflow: hidden !important;
+  color: inherit !important;
+
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0.04em !important;
+  text-align: left !important;
+  text-overflow: ellipsis !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+/* Bouton + Ajouter un personnage */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle--button > i {
+  display: grid !important;
+  flex: 0 0 44px !important;
+  place-items: center !important;
+
+  width: 44px !important;
+  height: 44px !important;
+
+  color: var(--accentClr, #bd6936) !important;
+  font-size: 20px !important;
+}
+
+/* Personnage actuellement connecté */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle.active {
+  background: rgba(189, 105, 54, 0.14) !important;
+}
+
+/* Croix de suppression */
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__delete {
+  position: absolute !important;
+  top: 50% !important;
+  right: 10px !important;
+  z-index: 20 !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  box-sizing: border-box !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+
+  color: #fff !important;
+  background: var(--accentClr, #bd6936) !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  opacity: 0.45 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  cursor: pointer;
+
+  transform: translateY(-50%) scale(0.9) !important;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle:hover .switcheroo__delete {
+  opacity: 1 !important;
+  transform: translateY(-50%) scale(1) !important;
+}
+
+/* Thème sombre */
+html[data-color-scheme="dark"]
+.sidebar #switcheroo .cj-switcheroo-dropdown {
+  background: #15161c !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-color-scheme="dark"]
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle > .switcheroo__popper {
+  color: #e7e7eb !important;
+}
+
+html[data-color-scheme="dark"]
+.sidebar #switcheroo .cj-switcheroo-dropdown__list
+> .switcheroo__squircle:hover,
+html[data-color-scheme="dark"]
+.sidebar #switcheroo .cj-switcheroo-dropdown
+.switcheroo__squircle.active {
+  background: rgba(101, 114, 243, 0.14) !important;
+}
