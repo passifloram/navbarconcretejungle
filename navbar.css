@@ -1156,3 +1156,76 @@
 .navbar a.mainmenu::before {
   transition: margin-right .38s ease !important;
 }
+
+
+/* Panneau Switcheroo plus grand et sans scroll interne */
+.sidebar #switcheroo .cj-switcheroo-dropdown {
+  padding: 9px !important;
+  overflow: visible !important;
+}
+
+/* La liste grandit naturellement avec les personnages */
+.sidebar #switcheroo .cj-switcheroo-dropdown__list {
+  width: 48px !important;
+  height: auto !important;
+  max-height: none !important;
+
+  gap: 9px !important;
+
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+
+  scrollbar-width: none !important;
+}
+
+.sidebar #switcheroo
+.cj-switcheroo-dropdown__list::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Cases des personnages et bouton + */
+.sidebar #switcheroo
+.cj-switcheroo-dropdown__list > .switcheroo__squircle {
+  box-sizing: border-box !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  flex: 0 0 48px !important;
+
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Avatars plus grands */
+.sidebar #switcheroo
+.cj-switcheroo-dropdown__list .switcheroo__avatar,
+.sidebar #switcheroo
+.cj-switcheroo-dropdown__list .switcheroo__avatar img {
+  width: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+
+  object-fit: cover !important;
+  border-radius: 8px !important;
+}
+
+/* Icône du bouton + adaptée à la nouvelle taille */
+.sidebar #switcheroo
+.cj-switcheroo-dropdown__list
+[data-action="open-login"] {
+  font-size: 18px !important;
+}
