@@ -47,7 +47,7 @@
   white-space: nowrap;
 
   color: var(--textColor);
-  background: var(--neutralDark);
+/*background: var(--neutralDark);*/
   border-radius: 7px;
 
   font-family: var(--fontone);
