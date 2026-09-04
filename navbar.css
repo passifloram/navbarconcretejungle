@@ -1386,3 +1386,67 @@
     color .16s ease,
     box-shadow .18s ease !important;
 }
+
+/* Fond général de la sidebar */
+.sidebar {
+  background: #e5e2dd !important;
+  border: 1px solid rgba(45, 40, 37, .05) !important;
+  box-shadow: 0 6px 20px rgba(40, 32, 27, .1) !important;
+}
+
+/* Conteneurs internes transparents */
+.sidebar_top,
+.sidebar_bottom,
+.sidebar .switch-theme,
+.sidebar .switch-theme [data-theme-controls] {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Boutons sans fond */
+.sidebar .color-scheme-toggle,
+.sidebar #switcheroo .forum-layout-toggle,
+.sidebar #switcheroo .switcheroo__squircle,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open,
+.sidebar .sidebar_bottom > a {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Supprime les fonds générés par Switcheroo */
+.sidebar #switcheroo .switcheroo__squircle::before {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Léger fond uniquement au survol */
+.sidebar .color-scheme-toggle:hover,
+.sidebar #switcheroo .forum-layout-toggle:hover,
+.sidebar #switcheroo .switcheroo__squircle:hover,
+.sidebar #FAM-button:hover,
+.sidebar #FAM-button-open:hover,
+.sidebar .sidebar_bottom > a:hover {
+  background: rgba(189, 105, 54, .13) !important;
+  box-shadow: none !important;
+}
+
+/* Mode sombre */
+[data-color-scheme="dark"] .sidebar {
+  background: #111217 !important;
+  border-color: rgba(255, 255, 255, .05) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .4) !important;
+}
+
+[data-color-scheme="dark"] .sidebar
+:is(
+  .color-scheme-toggle,
+  .forum-layout-toggle,
+  .switcheroo__squircle,
+  #FAM-button,
+  #FAM-button-open,
+  .sidebar_bottom > a
+):hover {
+  background: rgba(101, 114, 243, .16) !important;
+}
