@@ -1078,3 +1078,34 @@
     border-radius: 14px !important;
   }
 }
+
+/* Centrage réel de la navbar supérieure */
+.navbar {
+  gap: 0 !important;
+}
+
+/* Recrée uniquement l’espace entre les vrais boutons */
+.navbar a.mainmenu {
+  margin: 0 3.5px !important;
+}
+
+/* Centrage interne exact des icônes */
+.navbar a.mainmenu::before {
+  box-sizing: border-box;
+  display: grid !important;
+  place-items: center !important;
+
+  flex: 0 0 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+
+  margin: 0 !important;
+  line-height: 16px !important;
+  text-align: center !important;
+}
+
+/* Espace avec le libellé uniquement à l’ouverture */
+.navbar a.mainmenu:hover::before,
+.navbar a.mainmenu:focus-visible::before {
+  margin-right: 10px !important;
+}
