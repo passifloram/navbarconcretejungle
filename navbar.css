@@ -1332,3 +1332,76 @@
 [data-action="open-login"] {
   font-size: 17px !important;
 }
+
+/* Laisse dépasser le bouton de suppression */
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list > .switcheroo__squircle[data-action="switcheroo"] {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* Garde uniquement l’image cadrée */
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown .switcheroo__avatar {
+  overflow: hidden !important;
+}
+
+/* Bouton supprimer */
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown .switcheroo__delete {
+  position: absolute !important;
+  top: -6px !important;
+  right: -6px !important;
+  z-index: 50 !important;
+
+  display: grid !important;
+  place-items: center !important;
+  width: 19px !important;
+  height: 19px !important;
+  padding: 0 !important;
+
+  color: #fff !important;
+  background: #bd6936 !important;
+  border: 2px solid #f2efeb !important;
+  border-radius: 50% !important;
+
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(.8);
+  transition:
+    opacity .18s ease,
+    visibility .18s ease,
+    transform .18s ease;
+}
+
+/* Affichage au survol du personnage */
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list
+.switcheroo__squircle[data-action="switcheroo"]:hover
+.switcheroo__delete,
+.sidebar #switcheroo.cj-switcheroo-expanded
+.cj-switcheroo-dropdown__list
+.switcheroo__squircle[data-action="switcheroo"]:focus-within
+.switcheroo__delete {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Toujours visible sur téléphone/tablette */
+@media (hover: none) {
+  .sidebar #switcheroo.cj-switcheroo-expanded
+  .cj-switcheroo-dropdown .switcheroo__delete {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+}
