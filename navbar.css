@@ -314,3 +314,72 @@
   color: var(--textColor);
   background: var(--neutral);
 }
+
+
+/* Barre verticale droite */
+.sidebar_bottom {
+  position: fixed !important;
+  top: 50% !important;
+  right: 0 !important;
+  bottom: auto !important;
+  z-index: 99998 !important;
+
+  box-sizing: border-box;
+  width: 55px !important;
+  padding: 9px !important;
+
+  display: flex !important;
+  flex-direction: column;
+  gap: 7px;
+
+  background: var(--neutral);
+  border-radius: 8px 0 0 8px;
+  transform: translateY(-50%);
+}
+
+/* Haut, bas et Messenger */
+.sidebar_bottom > a,
+.sidebar_bottom > #FAM-button {
+  position: static !important;
+
+  box-sizing: border-box;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: grid !important;
+  place-items: center;
+
+  color: var(--accentClr) !important;
+  background: var(--neutralDark) !important;
+  border: 0;
+  border-radius: 7px;
+
+  font-size: 16px !important;
+  line-height: 1 !important;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.sidebar_bottom > a:hover,
+.sidebar_bottom > #FAM-button:hover {
+  color: var(--textColor) !important;
+  background: var(--neutral) !important;
+}
+
+/* Neutralise le line-height natif de FAM */
+.sidebar_bottom #FAM-button i {
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Fenêtre Messenger à côté de la barre */
+#FAM {
+  right: 65px !important;
+  bottom: 10px !important;
+  z-index: 99997 !important;
+}
