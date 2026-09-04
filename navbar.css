@@ -1,6 +1,6 @@
-/* ==================================================
-   NAVBAR
-   ================================================== */
+/* =========================================================
+   NAVBAR SUPÉRIEURE
+   ========================================================= */
 
 .navbar {
   position: fixed !important;
@@ -22,18 +22,19 @@
   font-size: 0;
 }
 
-/* Forumactif crée un li séparé pour chaque lien */
+/* Forumactif génère un li par lien */
 .navbar > li {
   display: contents;
 }
 
-/* ==================================================
-   BOUTONS
-   ================================================== */
+/* ---------------------------------------------------------
+   Boutons
+   --------------------------------------------------------- */
 
-.navbar a.mainmenu,
-.navbar #fa_notifications {
+.navbar a.mainmenu {
   box-sizing: border-box;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
@@ -47,70 +48,78 @@
   white-space: nowrap;
 
   color: var(--textColor);
-/*background: var(--neutralDark);*/
+  background: transparent;
   border-radius: 7px;
 
   font-family: var(--fontone);
-  font-size: 12px;
+  font-size: 0 !important;
   line-height: 36px;
-  text-transform: lowercase;
   text-decoration: none;
+  text-transform: lowercase;
+
+  will-change: max-width;
 
   transition:
-    max-width 0.7s ease,
-    background-color 0.5s ease;
+    max-width .34s cubic-bezier(.22, .61, .36, 1),
+    font-size .12s ease .06s,
+    background-color .2s ease,
+    color .18s ease,
+    box-shadow .2s ease !important;
 }
 
-.navbar a.mainmenu {
-  display: inline-flex;
-}
-
+/* Notifications déplacées dans la navbar */
 .navbar #fa_notifications {
   display: inline-flex !important;
 }
 
-/* Dépliage des libellés */
+/* Dépliage du bouton */
 .navbar a.mainmenu:hover,
-.navbar a.mainmenu:focus-visible,
-.navbar #fa_notifications:hover,
-.navbar #fa_notifications:focus-visible {
-  justify-content: flex-start;
+.navbar a.mainmenu:focus-visible {
+  justify-content: flex-start !important;
+
   width: auto;
   max-width: 180px;
   padding-right: 14px !important;
-  background: var(--neutral);
+
+  font-size: 12px !important;
+  background: var(--neutralDark);
+
+  transition:
+    max-width .24s cubic-bezier(.2, .75, .25, 1),
+    font-size .1s ease,
+    background-color .18s ease,
+    color .16s ease,
+    box-shadow .18s ease !important;
 }
 
-/* Images natives Forumactif */
+/* Cache les images natives Forumactif */
 .navbar a.mainmenu img {
   display: none !important;
 }
 
-/* ==================================================
-   ICÔNES
-   ================================================== */
+/* ---------------------------------------------------------
+   Icônes
+   --------------------------------------------------------- */
 
-.navbar a.mainmenu::before,
-.navbar #fa_notifications::before {
-  content: var(--nav-icon);
+.navbar a.mainmenu::before {
+  content: var(--nav-icon, "");
 
   flex: 0 0 16px;
   width: 16px;
-  margin: 0;
+  margin: 0 !important;
 
   color: var(--accentClr);
   font-family: "cappuccicons";
   font-size: 16px;
   line-height: 1;
   text-align: center;
+
+  transition: margin-right .2s ease;
 }
 
-/* Espace entre l’icône et le texte au dépliage */
 .navbar a.mainmenu:hover::before,
-.navbar a.mainmenu:focus-visible::before,
-.navbar #fa_notifications:hover::before,
-.navbar #fa_notifications:focus-visible::before {
-  margin-right: 10px;
+.navbar a.mainmenu:focus-visible::before {
+  margin-right: 10px !important;
 }
 
 /* Accueil */
@@ -138,7 +147,7 @@
   order: 4;
 }
 
-/* Messagerie */
+/* Messagerie privée */
 .navbar a[href^="/privmsg"] {
   --nav-icon: "\ea8b";
   order: 5;
@@ -168,10 +177,10 @@
   order: 8;
 }
 
-/* ==================================================
-   LIENS MASQUÉS
-   Cette partie doit rester après le style des boutons
-   ================================================== */
+/* ---------------------------------------------------------
+   Liens masqués
+   À conserver après les styles généraux des boutons
+   --------------------------------------------------------- */
 
 .navbar a[href^="/faq"],
 .navbar a[href^="/calendar"],
@@ -182,11 +191,11 @@
   display: none !important;
 }
 
-/* ==================================================
+/* =========================================================
    TOOLBAR ET NOTIFICATIONS
-   ================================================== */
+   ========================================================= */
 
-/* Masque le doublon “Bienvenue” */
+/* Supprime le doublon de bienvenue */
 #fa_welcome,
 #fa_menulist,
 #fa_usermenu,
@@ -194,7 +203,7 @@
   display: none !important;
 }
 
-/* Le conteneur conserve le fonctionnement Forumactif */
+/* Conserve le fonctionnement natif Forumactif */
 #fa_right {
   position: fixed !important;
   inset: 0 0 auto auto !important;
@@ -208,56 +217,14 @@
   background: transparent !important;
 }
 
-/* Liste ouverte sous la navbar */
-#notif_list {
-  position: fixed !important;
-  top: 55px !important;
-  left: 50% !important;
-  right: auto !important;
-  z-index: 1000 !important;
-
-  box-sizing: border-box;
-  width: min(380px, calc(100vw - 30px)) !important;
-  transform: translateX(-50%);
-}
-
-/* Correction des boutons fermés */
-.navbar a.mainmenu,
-.navbar #fa_notifications {
-  justify-content: center !important;
-  font-size: 0 !important;
-}
-
-/* Icônes centrées sans ancienne marge */
-.navbar a.mainmenu::before,
-.navbar #fa_notifications::before {
-  margin: 0 !important;
-}
-
-/* Rétablissement du texte au dépliage */
-.navbar a.mainmenu:hover,
-.navbar a.mainmenu:focus-visible,
-.navbar #fa_notifications:hover,
-.navbar #fa_notifications:focus-visible {
-  justify-content: flex-start !important;
-  font-size: 12px !important;
-}
-
-/* Espacement entre l’icône et le libellé ouvert */
-.navbar a.mainmenu:hover::before,
-.navbar a.mainmenu:focus-visible::before,
-.navbar #fa_notifications:hover::before,
-.navbar #fa_notifications:focus-visible::before {
-  margin-right: 10px !important;
-}
-
-/* Position correcte du menu des notifications */
+/* Fenêtre des notifications */
 #fa_toolbar #fa_right #notif_list,
 #fa_right.notification #notif_list {
   position: fixed !important;
   top: 65px !important;
   left: 50vw !important;
   right: auto !important;
+  z-index: 1000 !important;
 
   box-sizing: border-box;
   width: min(380px, calc(100vw - 30px)) !important;
@@ -268,127 +235,11 @@
   overflow-y: auto;
 
   transform: translateX(-50%) !important;
-  z-index: 1000 !important;
 }
 
-/* Barre latérale droite */
-.sidebar_bottom {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  z-index: 997;
-
-  box-sizing: border-box;
-  width: 55px;
-  padding: 9px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-
-  background: var(--neutral);
-  border-radius: 8px 0 0 8px;
-  transform: translateY(-50%);
-}
-
-/* Boutons */
-.sidebar_bottom > a {
-  box-sizing: border-box;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-
-  display: grid;
-  place-items: center;
-
-  color: var(--accentClr);
-  background: var(--neutralDark);
-  border-radius: 7px;
-  text-decoration: none;
-
-  font-size: 16px;
-  transition: background .2s, color .2s;
-}
-
-.sidebar_bottom > a:hover {
-  color: var(--textColor);
-  background: var(--neutral);
-}
-
-
-/* Barre verticale droite */
-.sidebar_bottom {
-  position: fixed !important;
-  top: 50% !important;
-  right: 0 !important;
-  bottom: auto !important;
-  z-index: 99998 !important;
-
-  box-sizing: border-box;
-  width: 55px !important;
-  padding: 9px !important;
-
-  display: flex !important;
-  flex-direction: column;
-  gap: 7px;
-
-  background: var(--neutral);
-  border-radius: 8px 0 0 8px;
-  transform: translateY(-50%);
-}
-
-/* Haut, bas et Messenger */
-.sidebar_bottom > a,
-.sidebar_bottom > #FAM-button {
-  position: static !important;
-
-  box-sizing: border-box;
-  width: 36px !important;
-  height: 36px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-
-  display: grid !important;
-  place-items: center;
-
-  color: var(--accentClr) !important;
-  background: var(--neutralDark) !important;
-  border: 0;
-  border-radius: 7px;
-
-  font-size: 16px !important;
-  line-height: 1 !important;
-  text-align: center;
-  text-decoration: none;
-
-  cursor: pointer;
-  transition: background .2s, color .2s;
-}
-
-.sidebar_bottom > a:hover,
-.sidebar_bottom > #FAM-button:hover {
-  color: var(--textColor) !important;
-  background: var(--neutral) !important;
-}
-
-/* Neutralise le line-height natif de FAM */
-.sidebar_bottom #FAM-button i {
-  margin: 0 !important;
-  line-height: 1 !important;
-}
-
-/* Fenêtre Messenger à côté de la barre */
-#FAM {
-  right: 65px !important;
-  bottom: 10px !important;
-  z-index: 99997 !important;
-}
-
-
-
-/* ==================================================
-   BARRE LATÉRALE DROITE
-   ================================================== */
+/* =========================================================
+   SIDEBAR DROITE
+   ========================================================= */
 
 .sidebar {
   position: fixed !important;
@@ -409,85 +260,154 @@
 
   overflow: visible !important;
 
-  background: var(--neutral);
+  background: var(--neutral) !important;
+  border: 1px solid rgba(45, 40, 37, .05) !important;
+  border-right: 0 !important;
   border-radius: 8px 0 0 8px;
+  box-shadow: 0 6px 20px rgba(40, 32, 27, .1) !important;
+
   transform: translateY(-50%);
 }
 
 /*
- * Les éléments de sidebar_top et sidebar_bottom
- * participent tous au même empilement vertical.
+ * Permet aux éléments des deux conteneurs de participer
+ * au même empilement vertical.
  */
 .sidebar_top,
 .sidebar_bottom {
   display: contents !important;
 }
 
-/* ==================================================
-   STYLE COMMUN DES BOUTONS
-   ================================================== */
+/* ---------------------------------------------------------
+   Taille commune des boutons
+   --------------------------------------------------------- */
 
 .sidebar .switch-theme,
+.sidebar .switch-theme [data-theme-controls],
 .sidebar .color-scheme-toggle,
-.sidebar .forum-layout-toggle,
-.sidebar .switcheroo__squircle,
-.sidebar_bottom > a,
+.sidebar #switcheroo .forum-layout-toggle,
+.sidebar #switcheroo .switcheroo__squircle,
 .sidebar #FAM-button,
-.sidebar #FAM-button-open {
+.sidebar #FAM-button-open,
+.sidebar .sidebar_bottom > a {
   box-sizing: border-box !important;
-  width: 36px !important;
-  min-width: 36px !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  margin: 0 !important;
-  padding: 0 !important;
 
   display: grid !important;
   place-items: center !important;
 
+  flex: 0 0 36px !important;
+
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  line-height: 1 !important;
+  border-radius: 8px !important;
+}
+
+/* ---------------------------------------------------------
+   Boutons transparents
+   --------------------------------------------------------- */
+
+.sidebar .color-scheme-toggle,
+.sidebar #switcheroo .forum-layout-toggle,
+.sidebar #switcheroo .switcheroo__squircle,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open,
+.sidebar .sidebar_bottom > a {
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+
   color: var(--accentClr) !important;
-  background: var(--neutralDark) !important;
-  border: 0 !important;
-  border-radius: 7px !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
 
   font-size: 16px !important;
-  line-height: 1 !important;
   text-align: center;
   text-decoration: none;
 
   cursor: pointer;
+
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
+    color .18s ease,
+    background-color .18s ease,
+    transform .18s ease;
 }
 
+/* Supprime les fonds générés par Switcheroo */
+.sidebar #switcheroo .switcheroo__squircle::before {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Survol */
 .sidebar .color-scheme-toggle:hover,
-.sidebar .forum-layout-toggle:hover,
-.sidebar .switcheroo__squircle:hover,
-.sidebar_bottom > a:hover,
+.sidebar #switcheroo .forum-layout-toggle:hover,
+.sidebar #switcheroo .switcheroo__squircle:hover,
 .sidebar #FAM-button:hover,
-.sidebar #FAM-button-open:hover {
-  color: var(--textColor) !important;
-  background: var(--neutral) !important;
+.sidebar #FAM-button-open:hover,
+.sidebar .sidebar_bottom > a:hover,
+.sidebar .color-scheme-toggle:focus-visible,
+.sidebar #switcheroo .forum-layout-toggle:focus-visible,
+.sidebar #switcheroo .switcheroo__squircle:focus-visible,
+.sidebar #FAM-button:focus-visible,
+.sidebar #FAM-button-open:focus-visible,
+.sidebar .sidebar_bottom > a:focus-visible {
+  color: var(--accentClr) !important;
+  background: rgba(189, 105, 54, .13) !important;
+  box-shadow: none !important;
+  transform: translateY(-1px);
 }
 
-/* ==================================================
+/* ---------------------------------------------------------
+   Centrage des icônes
+   --------------------------------------------------------- */
+
+.sidebar .color-scheme-toggle > *,
+.sidebar .forum-layout-toggle > *,
+.sidebar .switcheroo__squircle > i,
+.sidebar #FAM-button > i,
+.sidebar #FAM-button-open > i,
+.sidebar .sidebar_bottom > a > i {
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* =========================================================
    BOUTON DE THÈME
-   ================================================== */
+   ========================================================= */
 
 .sidebar .switch-theme {
   position: static !important;
   inset: auto !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
-.sidebar .switch-theme > div {
+.sidebar .switch-theme > div,
+.sidebar .switch-theme [data-theme-controls] {
   width: 36px !important;
   height: 36px !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 .sidebar .color-scheme-toggle {
   position: static !important;
+  appearance: none !important;
 }
 
 .sidebar .color-scheme-toggle .icon {
@@ -495,9 +415,9 @@
   line-height: 1 !important;
 }
 
-/* ==================================================
+/* =========================================================
    SWITCHEROO
-   ================================================== */
+   ========================================================= */
 
 .sidebar #switcheroo {
   position: static !important;
@@ -519,7 +439,7 @@
   transform: none !important;
 }
 
-.sidebar .switcheroo__squircles {
+.sidebar #switcheroo .switcheroo__squircles {
   position: static !important;
 
   width: 36px !important;
@@ -535,54 +455,57 @@
   overflow: visible !important;
 }
 
-/* Bouton de disposition */
-.sidebar .forum-layout-toggle {
+/* Bouton normal/columns */
+.sidebar #switcheroo
+.switcheroo__squircles > .forum-layout-toggle {
   position: relative !important;
   inset: auto !important;
+
+  appearance: none !important;
 }
 
 /* Comptes et bouton + */
-.sidebar .switcheroo__squircle {
+.sidebar #switcheroo .switcheroo__squircle {
   position: relative !important;
   inset: auto !important;
   overflow: visible !important;
 }
 
 /* Avatars */
-.sidebar .switcheroo__avatar {
-  box-sizing: border-box;
+.sidebar #switcheroo .switcheroo__avatar,
+.sidebar #switcheroo .switcheroo__avatar img {
+  box-sizing: border-box !important;
+
   width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+
   height: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+
   margin: 0 !important;
 
+  object-fit: cover !important;
+  border-radius: 7px !important;
+}
+
+.sidebar #switcheroo .switcheroo__avatar {
   overflow: hidden;
-  border-radius: 5px !important;
 }
 
-.sidebar .switcheroo__avatar img {
-  width: 30px !important;
-  height: 30px !important;
-  margin: 0 !important;
-
+.sidebar #switcheroo .switcheroo__avatar img {
   display: block;
-  object-fit: cover;
-  border-radius: 5px !important;
 }
 
-/* Icônes Switcheroo */
-.sidebar .switcheroo__squircle > i,
-.sidebar .forum-layout-toggle > i {
-  margin: 0 !important;
-  line-height: 1 !important;
-}
-
-/* Suppression du séparateur horizontal */
-.sidebar .switcheroo__divider {
+/* Séparateur et ancien bouton Accueil */
+.sidebar #switcheroo .switcheroo__divider,
+.sidebar #switcheroo .switcheroo__logo {
   display: none !important;
 }
 
 /* Infobulles ouvertes vers la gauche */
-.sidebar .switcheroo__popper {
+.sidebar #switcheroo .switcheroo__popper {
   position: absolute !important;
   top: 50% !important;
   right: 45px !important;
@@ -593,137 +516,39 @@
   transform: translateY(-50%) !important;
 }
 
-/* ==================================================
-   FAM, HAUT ET BAS
-   ================================================== */
-
-.sidebar_bottom > a,
-.sidebar #FAM-button,
-.sidebar #FAM-button-open {
-  position: static !important;
-  inset: auto !important;
-  float: none !important;
-}
-
-.sidebar_bottom > a i,
-.sidebar #FAM-button i,
-.sidebar #FAM-button-open i {
-  margin: 0 !important;
-  line-height: 1 !important;
-}
-
-/* Fenêtre Messenger */
-#FAM {
-  position: fixed !important;
-  right: 65px !important;
-  bottom: 10px !important;
-  z-index: 99997 !important;
-
-  max-width: calc(100vw - 80px) !important;
-  max-height: calc(100vh - 20px) !important;
-}
-
-/* ==================================================
-   RESPONSIVE
-   ================================================== */
-
-@media (max-height: 600px) {
-  .sidebar {
-    top: 60px !important;
-    bottom: 10px !important;
-
-    max-height: calc(100vh - 70px);
-    overflow-y: auto !important;
-
-    transform: none;
-  }
-
-  .sidebar,
-  .sidebar .switcheroo__squircles {
-    gap: 5px !important;
-  }
-}
-
-@media (max-width: 600px) {
-  #FAM {
-    right: 60px !important;
-    bottom: 5px !important;
-
-    width: calc(100vw - 70px) !important;
-    height: calc(100vh - 10px) !important;
-  }
-}
-
-
-/* Sidebar totalement transparente */
-.sidebar,
-.sidebar_top,
-.sidebar_bottom {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* Boutons transparents par défaut */
-.sidebar .switch-theme,
-.sidebar .color-scheme-toggle,
-.sidebar .forum-layout-toggle,
-.sidebar .switcheroo__squircle,
-.sidebar #FAM-button,
-.sidebar #FAM-button-open,
-.sidebar .sidebar_bottom > a {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Supprime aussi le fond interne de Switcheroo */
-.sidebar .switcheroo__squircle::before {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Fond uniquement au survol ou au clavier */
-.sidebar .color-scheme-toggle:hover,
-.sidebar .forum-layout-toggle:hover,
-.sidebar .switcheroo__squircle:hover,
-.sidebar #FAM-button:hover,
-.sidebar #FAM-button-open:hover,
-.sidebar .sidebar_bottom > a:hover,
-.sidebar .color-scheme-toggle:focus-visible,
-.sidebar .forum-layout-toggle:focus-visible,
-.sidebar .switcheroo__squircle:focus-visible,
-.sidebar #FAM-button:focus-visible,
-.sidebar #FAM-button-open:focus-visible,
-.sidebar .sidebar_bottom > a:focus-visible {
-  background: color-mix(
-    in srgb,
-    currentColor 14%,
-    transparent
-  ) !important;
-  border-color: transparent !important;
-}
-
-/* Fond du bouton Switcheroo au survol */
-.sidebar .switcheroo__squircle:hover::before,
-.sidebar .switcheroo__squircle:focus-visible::before {
-  background: color-mix(
-    in srgb,
-    currentColor 14%,
-    transparent
-  ) !important;
-}
-
-
-/* Écarte le panneau des comptes de la navbar */
+/* Écarte le panneau des comptes */
 .sidebar #switcheroo .cj-switcheroo-dropdown {
   right: calc(100% + 24px) !important;
 }
 
+/* =========================================================
+   MODE SOMBRE DE LA SIDEBAR
+   ========================================================= */
 
+[data-color-scheme="dark"] .sidebar {
+  background: #111217 !important;
+  border-color: rgba(255, 255, 255, .05) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .4) !important;
+}
+
+[data-color-scheme="dark"]
+.sidebar .color-scheme-toggle:hover,
+[data-color-scheme="dark"]
+.sidebar #switcheroo .forum-layout-toggle:hover,
+[data-color-scheme="dark"]
+.sidebar #switcheroo .switcheroo__squircle:hover,
+[data-color-scheme="dark"]
+.sidebar #FAM-button:hover,
+[data-color-scheme="dark"]
+.sidebar #FAM-button-open:hover,
+[data-color-scheme="dark"]
+.sidebar .sidebar_bottom > a:hover {
+  color: #6572f3 !important;
+  background: rgba(101, 114, 243, .16) !important;
+}
 
 /* =========================================================
-   FORUMACTIF MESSENGER — CONCRETE JUNGLE
+   FORUMACTIF MESSENGER
    ========================================================= */
 
 #FAM {
@@ -738,31 +563,35 @@
   position: fixed !important;
   right: 75px !important;
   bottom: 18px !important;
+  z-index: 99999 !important;
 
   display: flex !important;
   flex-direction: column;
+
   width: min(430px, calc(100vw - 105px)) !important;
   height: min(610px, calc(100vh - 36px)) !important;
+  max-width: calc(100vw - 90px) !important;
+  max-height: calc(100vh - 36px) !important;
 
   overflow: hidden;
+
   color: var(--fam-text) !important;
   background: var(--fam-bg) !important;
   border: 1px solid var(--fam-line) !important;
   border-radius: 18px !important;
   box-shadow: 0 18px 50px rgba(35, 28, 24, .22) !important;
+
   font-family: inherit !important;
 
   transform-origin: right bottom;
+
   transition:
     opacity .2s ease,
     transform .2s ease,
     visibility .2s ease !important;
-
-  z-index: 99999 !important;
 }
 
-/* Mode sombre */
-
+/* Mode sombre de Messenger */
 [data-color-scheme="dark"] #FAM {
   --fam-accent: #6572f3;
   --fam-accent-soft: rgba(101, 114, 243, .16);
@@ -776,7 +605,6 @@
 }
 
 /* Animation d’ouverture */
-
 #FAM[data-hidden="true"] {
   visibility: hidden !important;
   pointer-events: none !important;
@@ -791,10 +619,13 @@
   transform: translateX(0) scale(1) !important;
 }
 
-/* Barre supérieure */
+/* ---------------------------------------------------------
+   Barre supérieure
+   --------------------------------------------------------- */
 
 #FAM-toolbar {
   flex: 0 0 auto;
+
   background: var(--fam-panel) !important;
   border-bottom: 1px solid var(--fam-line) !important;
 }
@@ -803,6 +634,7 @@
   display: flex !important;
   align-items: center;
   gap: 10px;
+
   min-height: 56px;
   padding: 0 14px !important;
 }
@@ -813,6 +645,7 @@
   margin: 0 !important;
 
   overflow: hidden;
+
   color: var(--fam-text) !important;
   font-size: 13px !important;
   font-weight: 800 !important;
@@ -825,6 +658,7 @@
 #FAM .FAM-toolbar-button {
   display: grid !important;
   place-items: center;
+
   flex: 0 0 34px;
   width: 34px !important;
   height: 34px !important;
@@ -832,8 +666,12 @@
   color: var(--fam-accent) !important;
   background: transparent !important;
   border-radius: 9px;
+
   cursor: pointer;
-  transition: background .18s ease, transform .18s ease;
+
+  transition:
+    background-color .18s ease,
+    transform .18s ease;
 }
 
 #FAM .FAM-toolbar-button:hover {
@@ -841,7 +679,9 @@
   transform: translateY(-1px);
 }
 
-/* Menu des paramètres */
+/* ---------------------------------------------------------
+   Menu Messenger
+   --------------------------------------------------------- */
 
 #FAM-menu {
   position: absolute !important;
@@ -862,12 +702,14 @@
 #FAM .FAM-menu-option {
   display: grid !important;
   place-items: center;
+
   width: 34px !important;
   height: 34px !important;
 
   color: var(--fam-muted) !important;
   background: transparent !important;
   border-radius: 8px;
+
   cursor: pointer;
 }
 
@@ -880,16 +722,20 @@
 #FAM-menu-avatar img {
   width: 28px !important;
   height: 28px !important;
+
   object-fit: cover;
   border-radius: 7px !important;
 }
 
-/* Onglets */
+/* ---------------------------------------------------------
+   Onglets
+   --------------------------------------------------------- */
 
 #FAM-tab-container {
   display: flex !important;
   align-items: center;
   flex: 0 0 auto;
+
   min-height: 43px;
 
   background: var(--fam-panel) !important;
@@ -900,7 +746,9 @@
   display: flex !important;
   flex: 1;
   min-width: 0;
+
   overflow-x: auto;
+
   scrollbar-width: none;
 }
 
@@ -912,6 +760,7 @@
   display: flex !important;
   align-items: center;
   gap: 8px;
+
   min-width: 130px;
   max-width: 190px;
   padding: 11px 13px !important;
@@ -919,6 +768,7 @@
   color: var(--fam-muted) !important;
   background: transparent !important;
   border-right: 1px solid var(--fam-line) !important;
+
   cursor: pointer;
 }
 
@@ -930,6 +780,7 @@
 #FAM .FAM-tab-name {
   flex: 1;
   overflow: hidden;
+
   font-size: 12px;
   font-weight: 700;
   text-overflow: ellipsis;
@@ -948,10 +799,12 @@
 #FAM-tab-add {
   display: grid !important;
   place-items: center;
+
   flex: 0 0 42px;
   height: 42px;
 
   color: var(--fam-accent) !important;
+
   cursor: pointer;
 }
 
@@ -959,7 +812,9 @@
   background: var(--fam-accent-soft) !important;
 }
 
-/* Contenu */
+/* ---------------------------------------------------------
+   Contenu
+   --------------------------------------------------------- */
 
 #FAM-content {
   flex: 1 1 auto !important;
@@ -968,6 +823,7 @@
 
   overflow-x: hidden !important;
   overflow-y: auto !important;
+
   background: var(--fam-bg) !important;
 
   scrollbar-color: var(--fam-accent) transparent;
@@ -983,7 +839,9 @@
   border-radius: 10px;
 }
 
-/* Forums et conversations */
+/* ---------------------------------------------------------
+   Forums et conversations
+   --------------------------------------------------------- */
 
 #FAM .FAM-chat {
   display: grid !important;
@@ -998,11 +856,12 @@
   background: var(--fam-panel) !important;
   border: 1px solid transparent !important;
   border-radius: 13px !important;
+
   cursor: pointer;
 
   transition:
     border-color .18s ease,
-    background .18s ease,
+    background-color .18s ease,
     transform .18s ease;
 }
 
@@ -1012,8 +871,7 @@
   transform: translateX(3px);
 }
 
-/* L’avatar suffit : suppression du gros pictogramme */
-
+/* L’avatar remplace le pictogramme de dossier */
 #FAM .FAM-chat-icon {
   display: none !important;
 }
@@ -1027,6 +885,7 @@
 #FAM .FAM-chat-avatar img {
   width: 42px !important;
   height: 42px !important;
+
   object-fit: cover;
   border-radius: 11px !important;
 }
@@ -1034,9 +893,10 @@
 #FAM .FAM-chat-title {
   grid-column: 2;
   grid-row: 1;
+  align-self: end;
 
   overflow: hidden;
-  align-self: end;
+
   color: var(--fam-text) !important;
   font-size: 14px !important;
   font-weight: 800 !important;
@@ -1047,9 +907,10 @@
 #FAM .FAM-chat-date {
   grid-column: 2;
   grid-row: 2;
+  align-self: start;
 
   overflow: hidden;
-  align-self: start;
+
   color: var(--fam-muted) !important;
   font-size: 12px !important;
   line-height: 1.35;
@@ -1057,7 +918,9 @@
   white-space: nowrap;
 }
 
-/* Messages */
+/* ---------------------------------------------------------
+   Messages
+   --------------------------------------------------------- */
 
 #FAM .FAM-msg {
   display: grid !important;
@@ -1072,6 +935,7 @@
 #FAM .FAM-msg-avatar img {
   width: 34px !important;
   height: 34px !important;
+
   object-fit: cover;
   border-radius: 10px !important;
 }
@@ -1082,6 +946,7 @@
 
 #FAM .FAM-msg-name {
   margin: 0 0 4px 4px;
+
   color: var(--fam-accent) !important;
   font-size: 13px !important;
   font-weight: 800 !important;
@@ -1089,6 +954,7 @@
 
 #FAM .FAM-msg-content {
   padding: 10px 12px !important;
+
   color: var(--fam-text) !important;
   background: var(--fam-panel) !important;
   border: 1px solid var(--fam-line) !important;
@@ -1102,6 +968,7 @@
 
 #FAM .FAM-msg-date {
   margin: 4px 0 0 4px;
+
   color: var(--fam-muted) !important;
   font-size: 11px !important;
 }
@@ -1110,18 +977,21 @@
   display: flex;
   justify-content: flex-end;
   gap: 4px;
+
   margin-top: 6px;
 }
 
 #FAM .FAM-msg-button {
   display: grid !important;
   place-items: center;
+
   width: 25px;
   height: 25px;
 
   color: var(--fam-muted) !important;
   background: transparent !important;
   border-radius: 7px;
+
   cursor: pointer;
 }
 
@@ -1130,11 +1000,14 @@
   background: var(--fam-accent-soft) !important;
 }
 
-/* Zone de réponse */
+/* ---------------------------------------------------------
+   Zone de réponse
+   --------------------------------------------------------- */
 
 #FAM-actions {
   flex: 0 0 auto;
   padding: 10px !important;
+
   background: var(--fam-panel) !important;
   border-top: 1px solid var(--fam-line) !important;
 }
@@ -1143,6 +1016,7 @@
 #FAM textarea,
 #FAM select {
   box-sizing: border-box;
+
   color: var(--fam-text) !important;
   background: var(--fam-bg) !important;
   border: 1px solid var(--fam-line) !important;
@@ -1170,283 +1044,37 @@
   border: 0 !important;
   border-radius: 9px !important;
   box-shadow: none !important;
+
   font-weight: 700;
 }
 
-/* Mobile */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-height: 600px) {
+  .sidebar {
+    top: 60px !important;
+    bottom: 10px !important;
+
+    gap: 5px;
+
+    transform: none;
+  }
+
+  .sidebar #switcheroo .switcheroo__squircles {
+    gap: 5px !important;
+  }
+}
 
 @media (max-width: 650px) {
   #FAM {
     right: 68px !important;
     bottom: 10px !important;
+
     width: calc(100vw - 82px) !important;
     height: calc(100vh - 20px) !important;
+
     border-radius: 14px !important;
   }
-}
-
-
-/* Sidebar toujours transparente */
-.sidebar,
-.sidebar_top,
-.sidebar_bottom {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* Fond des boutons */
-.sidebar .color-scheme-toggle,
-.sidebar .forum-layout-toggle,
-.sidebar .switcheroo__squircle,
-.sidebar #FAM-button,
-.sidebar #FAM-button-open,
-.sidebar .sidebar_bottom > a {
-  background: #e5e2dd !important;
-  border: 1px solid rgba(45, 40, 37, .05) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 2px 6px rgba(40, 32, 27, .06) !important;
-
-  transition:
-    background .18s ease,
-    color .18s ease,
-    transform .18s ease,
-    box-shadow .18s ease;
-}
-
-/* Fond interne éventuel de Switcheroo */
-.sidebar .switcheroo__squircle::before {
-  background: transparent !important;
-}
-
-/* Survol */
-.sidebar .color-scheme-toggle:hover,
-.sidebar .forum-layout-toggle:hover,
-.sidebar .switcheroo__squircle:hover,
-.sidebar #FAM-button:hover,
-.sidebar #FAM-button-open:hover,
-.sidebar .sidebar_bottom > a:hover {
-  background: #f1ede8 !important;
-  color: #bd6936 !important;
-  box-shadow: 0 4px 10px rgba(40, 32, 27, .12) !important;
-  transform: translateY(-1px);
-}
-
-/* Mode sombre */
-[data-color-scheme="dark"] .sidebar .color-scheme-toggle,
-[data-color-scheme="dark"] .sidebar .forum-layout-toggle,
-[data-color-scheme="dark"] .sidebar .switcheroo__squircle,
-[data-color-scheme="dark"] .sidebar #FAM-button,
-[data-color-scheme="dark"] .sidebar #FAM-button-open,
-[data-color-scheme="dark"] .sidebar .sidebar_bottom > a {
-  background: #111217 !important;
-  border-color: rgba(255, 255, 255, .05) !important;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, .28) !important;
-}
-
-/* Survol sombre */
-[data-color-scheme="dark"] .sidebar .color-scheme-toggle:hover,
-[data-color-scheme="dark"] .sidebar .forum-layout-toggle:hover,
-[data-color-scheme="dark"] .sidebar .switcheroo__squircle:hover,
-[data-color-scheme="dark"] .sidebar #FAM-button:hover,
-[data-color-scheme="dark"] .sidebar #FAM-button-open:hover,
-[data-color-scheme="dark"] .sidebar .sidebar_bottom > a:hover {
-  color: #6572f3 !important;
-  background: #202129 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .42) !important;
-}
-
-
-/* Bouton disposition normal / columns */
-.sidebar #switcheroo
-.switcheroo__squircles > .forum-layout-toggle {
-  appearance: none !important;
-  display: grid !important;
-  place-items: center !important;
-
-  flex: 0 0 36px !important;
-  width: 36px !important;
-  height: 36px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-
-  color: #bd6936 !important;
-  background: #e5e2dd !important;
-  border: 1px solid rgba(45, 40, 37, .05) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 2px 6px rgba(40, 32, 27, .06) !important;
-  cursor: pointer;
-
-  transition:
-    background .18s ease,
-    transform .18s ease,
-    box-shadow .18s ease;
-}
-
-.sidebar #switcheroo
-.switcheroo__squircles > .forum-layout-toggle:hover {
-  background: #f1ede8 !important;
-  box-shadow: 0 4px 10px rgba(40, 32, 27, .12) !important;
-  transform: translateY(-1px);
-}
-
-/* Mode sombre */
-[data-color-scheme="dark"]
-.sidebar #switcheroo
-.switcheroo__squircles > .forum-layout-toggle {
-  color: #6572f3 !important;
-  background: #111217 !important;
-  border-color: rgba(255, 255, 255, .05) !important;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, .28) !important;
-}
-
-[data-color-scheme="dark"]
-.sidebar #switcheroo
-.switcheroo__squircles > .forum-layout-toggle:hover {
-  background: #202129 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .42) !important;
-}
-
-
-/* Taille unique pour tous les boutons de la sidebar */
-.sidebar .switch-theme,
-.sidebar .switch-theme [data-theme-controls],
-.sidebar .color-scheme-toggle,
-.sidebar #switcheroo .forum-layout-toggle,
-.sidebar #switcheroo .switcheroo__squircle,
-.sidebar #FAM-button,
-.sidebar #FAM-button-open,
-.sidebar .sidebar_bottom > a {
-  box-sizing: border-box !important;
-
-  display: grid !important;
-  place-items: center !important;
-
-  flex: 0 0 36px !important;
-  width: 36px !important;
-  min-width: 36px !important;
-  max-width: 36px !important;
-
-  height: 36px !important;
-  min-height: 36px !important;
-  max-height: 36px !important;
-
-  padding: 0 !important;
-  margin: 0 !important;
-  line-height: 1 !important;
-  border-radius: 8px !important;
-}
-
-/* Icônes parfaitement centrées */
-.sidebar .color-scheme-toggle > *,
-.sidebar .forum-layout-toggle > *,
-.sidebar .switcheroo__squircle > i,
-.sidebar #FAM-button > i,
-.sidebar #FAM-button-open > i,
-.sidebar .sidebar_bottom > a > i {
-  margin: 0 !important;
-  line-height: 1 !important;
-}
-
-/* Avatars Switcheroo */
-.sidebar #switcheroo .switcheroo__avatar,
-.sidebar #switcheroo .switcheroo__avatar img {
-  box-sizing: border-box !important;
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  max-width: 30px !important;
-  min-height: 30px !important;
-  max-height: 30px !important;
-
-  object-fit: cover !important;
-  border-radius: 7px !important;
-}
-
-
-/* Navbar haute — fermeture douce et réactive */
-.navbar a.mainmenu {
-  transition:
-    max-width .34s cubic-bezier(.22, .61, .36, 1),
-    font-size .12s ease .06s,
-    background-color .2s ease,
-    color .18s ease,
-    box-shadow .2s ease !important;
-
-  will-change: max-width;
-}
-
-/* Ouverture un peu plus rapide */
-.navbar a.mainmenu:hover,
-.navbar a.mainmenu:focus-visible {
-  transition:
-    max-width .24s cubic-bezier(.2, .75, .25, 1),
-    font-size .1s ease,
-    background-color .18s ease,
-    color .16s ease,
-    box-shadow .18s ease !important;
-}
-
-/* Fond général de la sidebar */
-.sidebar {
-  background: #e5e2dd !important;
-  border: 1px solid rgba(45, 40, 37, .05) !important;
-  box-shadow: 0 6px 20px rgba(40, 32, 27, .1) !important;
-}
-
-/* Conteneurs internes transparents */
-.sidebar_top,
-.sidebar_bottom,
-.sidebar .switch-theme,
-.sidebar .switch-theme [data-theme-controls] {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Boutons sans fond */
-.sidebar .color-scheme-toggle,
-.sidebar #switcheroo .forum-layout-toggle,
-.sidebar #switcheroo .switcheroo__squircle,
-.sidebar #FAM-button,
-.sidebar #FAM-button-open,
-.sidebar .sidebar_bottom > a {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Supprime les fonds générés par Switcheroo */
-.sidebar #switcheroo .switcheroo__squircle::before {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Léger fond uniquement au survol */
-.sidebar .color-scheme-toggle:hover,
-.sidebar #switcheroo .forum-layout-toggle:hover,
-.sidebar #switcheroo .switcheroo__squircle:hover,
-.sidebar #FAM-button:hover,
-.sidebar #FAM-button-open:hover,
-.sidebar .sidebar_bottom > a:hover {
-  background: rgba(189, 105, 54, .13) !important;
-  box-shadow: none !important;
-}
-
-/* Mode sombre */
-[data-color-scheme="dark"] .sidebar {
-  background: #111217 !important;
-  border-color: rgba(255, 255, 255, .05) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .4) !important;
-}
-
-[data-color-scheme="dark"] .sidebar
-:is(
-  .color-scheme-toggle,
-  .forum-layout-toggle,
-  .switcheroo__squircle,
-  #FAM-button,
-  #FAM-button-open,
-  .sidebar_bottom > a
-):hover {
-  background: rgba(101, 114, 243, .16) !important;
 }
