@@ -220,3 +220,33 @@
   width: min(380px, calc(100vw - 30px)) !important;
   transform: translateX(-50%);
 }
+
+/* Correction des boutons fermés */
+.navbar a.mainmenu,
+.navbar #fa_notifications {
+  justify-content: center !important;
+  font-size: 0 !important;
+}
+
+/* Icônes centrées sans ancienne marge */
+.navbar a.mainmenu::before,
+.navbar #fa_notifications::before {
+  margin: 0 !important;
+}
+
+/* Rétablissement du texte au dépliage */
+.navbar a.mainmenu:hover,
+.navbar a.mainmenu:focus-visible,
+.navbar #fa_notifications:hover,
+.navbar #fa_notifications:focus-visible {
+  justify-content: flex-start !important;
+  font-size: 11px !important;
+}
+
+/* Espacement entre l’icône et le libellé ouvert */
+.navbar a.mainmenu:hover::before,
+.navbar a.mainmenu:focus-visible::before,
+.navbar #fa_notifications:hover::before,
+.navbar #fa_notifications:focus-visible::before {
+  margin-right: 10px !important;
+}
