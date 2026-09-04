@@ -383,3 +383,273 @@
   bottom: 10px !important;
   z-index: 99997 !important;
 }
+
+
+
+/* ==================================================
+   BARRE LATÉRALE DROITE
+   ================================================== */
+
+.sidebar {
+  position: fixed !important;
+  top: 50% !important;
+  right: 0 !important;
+  bottom: auto !important;
+  z-index: 99998 !important;
+
+  box-sizing: border-box;
+  width: 55px !important;
+  margin: 0 !important;
+  padding: 9px !important;
+
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+
+  overflow: visible !important;
+
+  background: var(--neutral);
+  border-radius: 8px 0 0 8px;
+  transform: translateY(-50%);
+}
+
+/*
+ * Les éléments de sidebar_top et sidebar_bottom
+ * participent tous au même empilement vertical.
+ */
+.sidebar_top,
+.sidebar_bottom {
+  display: contents !important;
+}
+
+/* ==================================================
+   STYLE COMMUN DES BOUTONS
+   ================================================== */
+
+.sidebar .switch-theme,
+.sidebar .color-scheme-toggle,
+.sidebar .forum-layout-toggle,
+.sidebar .switcheroo__squircle,
+.sidebar_bottom > a,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open {
+  box-sizing: border-box !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  color: var(--accentClr) !important;
+  background: var(--neutralDark) !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+
+  font-size: 16px !important;
+  line-height: 1 !important;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar .color-scheme-toggle:hover,
+.sidebar .forum-layout-toggle:hover,
+.sidebar .switcheroo__squircle:hover,
+.sidebar_bottom > a:hover,
+.sidebar #FAM-button:hover,
+.sidebar #FAM-button-open:hover {
+  color: var(--textColor) !important;
+  background: var(--neutral) !important;
+}
+
+/* ==================================================
+   BOUTON DE THÈME
+   ================================================== */
+
+.sidebar .switch-theme {
+  position: static !important;
+  inset: auto !important;
+}
+
+.sidebar .switch-theme > div {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.sidebar .color-scheme-toggle {
+  position: static !important;
+}
+
+.sidebar .color-scheme-toggle .icon {
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* ==================================================
+   SWITCHEROO
+   ================================================== */
+
+.sidebar #switcheroo {
+  position: static !important;
+  inset: auto !important;
+  z-index: auto !important;
+
+  box-sizing: border-box;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: block !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  transform: none !important;
+}
+
+.sidebar .switcheroo__squircles {
+  position: static !important;
+
+  width: 36px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 7px !important;
+
+  overflow: visible !important;
+}
+
+/* Bouton de disposition */
+.sidebar .forum-layout-toggle {
+  position: relative !important;
+  inset: auto !important;
+}
+
+/* Comptes et bouton + */
+.sidebar .switcheroo__squircle {
+  position: relative !important;
+  inset: auto !important;
+  overflow: visible !important;
+}
+
+/* Avatars */
+.sidebar .switcheroo__avatar {
+  box-sizing: border-box;
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 !important;
+
+  overflow: hidden;
+  border-radius: 5px !important;
+}
+
+.sidebar .switcheroo__avatar img {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 !important;
+
+  display: block;
+  object-fit: cover;
+  border-radius: 5px !important;
+}
+
+/* Icônes Switcheroo */
+.sidebar .switcheroo__squircle > i,
+.sidebar .forum-layout-toggle > i {
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Suppression du séparateur horizontal */
+.sidebar .switcheroo__divider {
+  display: none !important;
+}
+
+/* Infobulles ouvertes vers la gauche */
+.sidebar .switcheroo__popper {
+  position: absolute !important;
+  top: 50% !important;
+  right: 45px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  margin: 0 !important;
+  transform: translateY(-50%) !important;
+}
+
+/* ==================================================
+   FAM, HAUT ET BAS
+   ================================================== */
+
+.sidebar_bottom > a,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open {
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+}
+
+.sidebar_bottom > a i,
+.sidebar #FAM-button i,
+.sidebar #FAM-button-open i {
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Fenêtre Messenger */
+#FAM {
+  position: fixed !important;
+  right: 65px !important;
+  bottom: 10px !important;
+  z-index: 99997 !important;
+
+  max-width: calc(100vw - 80px) !important;
+  max-height: calc(100vh - 20px) !important;
+}
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+
+@media (max-height: 600px) {
+  .sidebar {
+    top: 60px !important;
+    bottom: 10px !important;
+
+    max-height: calc(100vh - 70px);
+    overflow-y: auto !important;
+
+    transform: none;
+  }
+
+  .sidebar,
+  .sidebar .switcheroo__squircles {
+    gap: 5px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #FAM {
+    right: 60px !important;
+    bottom: 5px !important;
+
+    width: calc(100vw - 70px) !important;
+    height: calc(100vh - 10px) !important;
+  }
+}
