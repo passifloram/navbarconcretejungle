@@ -1255,3 +1255,134 @@
   background: #202129 !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, .42) !important;
 }
+
+
+/* Bouton disposition normal / columns */
+.sidebar #switcheroo
+.switcheroo__squircles > .forum-layout-toggle {
+  appearance: none !important;
+  display: grid !important;
+  place-items: center !important;
+
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  color: #bd6936 !important;
+  background: #e5e2dd !important;
+  border: 1px solid rgba(45, 40, 37, .05) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 6px rgba(40, 32, 27, .06) !important;
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.sidebar #switcheroo
+.switcheroo__squircles > .forum-layout-toggle:hover {
+  background: #f1ede8 !important;
+  box-shadow: 0 4px 10px rgba(40, 32, 27, .12) !important;
+  transform: translateY(-1px);
+}
+
+/* Mode sombre */
+[data-color-scheme="dark"]
+.sidebar #switcheroo
+.switcheroo__squircles > .forum-layout-toggle {
+  color: #6572f3 !important;
+  background: #111217 !important;
+  border-color: rgba(255, 255, 255, .05) !important;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, .28) !important;
+}
+
+[data-color-scheme="dark"]
+.sidebar #switcheroo
+.switcheroo__squircles > .forum-layout-toggle:hover {
+  background: #202129 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .42) !important;
+}
+
+
+/* Taille unique pour tous les boutons de la sidebar */
+.sidebar .switch-theme,
+.sidebar .switch-theme [data-theme-controls],
+.sidebar .color-scheme-toggle,
+.sidebar #switcheroo .forum-layout-toggle,
+.sidebar #switcheroo .switcheroo__squircle,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open,
+.sidebar .sidebar_bottom > a {
+  box-sizing: border-box !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  border-radius: 8px !important;
+}
+
+/* Icônes parfaitement centrées */
+.sidebar .color-scheme-toggle > *,
+.sidebar .forum-layout-toggle > *,
+.sidebar .switcheroo__squircle > i,
+.sidebar #FAM-button > i,
+.sidebar #FAM-button-open > i,
+.sidebar .sidebar_bottom > a > i {
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Avatars Switcheroo */
+.sidebar #switcheroo .switcheroo__avatar,
+.sidebar #switcheroo .switcheroo__avatar img {
+  box-sizing: border-box !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+
+  object-fit: cover !important;
+  border-radius: 7px !important;
+}
+
+
+/* Navbar haute — fermeture douce et réactive */
+.navbar a.mainmenu {
+  transition:
+    max-width .34s cubic-bezier(.22, .61, .36, 1),
+    font-size .12s ease .06s,
+    background-color .2s ease,
+    color .18s ease,
+    box-shadow .2s ease !important;
+
+  will-change: max-width;
+}
+
+/* Ouverture un peu plus rapide */
+.navbar a.mainmenu:hover,
+.navbar a.mainmenu:focus-visible {
+  transition:
+    max-width .24s cubic-bezier(.2, .75, .25, 1),
+    font-size .1s ease,
+    background-color .18s ease,
+    color .16s ease,
+    box-shadow .18s ease !important;
+}
