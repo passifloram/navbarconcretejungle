@@ -250,3 +250,23 @@
 .navbar #fa_notifications:focus-visible::before {
   margin-right: 10px !important;
 }
+
+/* Position correcte du menu des notifications */
+#fa_toolbar #fa_right #notif_list,
+#fa_right.notification #notif_list {
+  position: fixed !important;
+  top: 65px !important;
+  left: 50vw !important;
+  right: auto !important;
+
+  box-sizing: border-box;
+  width: min(380px, calc(100vw - 30px)) !important;
+  max-height: calc(100vh - 80px);
+  margin: 0 !important;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  transform: translateX(-50%) !important;
+  z-index: 1000 !important;
+}
