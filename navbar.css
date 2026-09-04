@@ -1184,3 +1184,74 @@
     border-radius: 14px !important;
   }
 }
+
+
+/* Sidebar toujours transparente */
+.sidebar,
+.sidebar_top,
+.sidebar_bottom {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Fond des boutons */
+.sidebar .color-scheme-toggle,
+.sidebar .forum-layout-toggle,
+.sidebar .switcheroo__squircle,
+.sidebar #FAM-button,
+.sidebar #FAM-button-open,
+.sidebar .sidebar_bottom > a {
+  background: #e5e2dd !important;
+  border: 1px solid rgba(45, 40, 37, .05) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 6px rgba(40, 32, 27, .06) !important;
+
+  transition:
+    background .18s ease,
+    color .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+/* Fond interne éventuel de Switcheroo */
+.sidebar .switcheroo__squircle::before {
+  background: transparent !important;
+}
+
+/* Survol */
+.sidebar .color-scheme-toggle:hover,
+.sidebar .forum-layout-toggle:hover,
+.sidebar .switcheroo__squircle:hover,
+.sidebar #FAM-button:hover,
+.sidebar #FAM-button-open:hover,
+.sidebar .sidebar_bottom > a:hover {
+  background: #f1ede8 !important;
+  color: #bd6936 !important;
+  box-shadow: 0 4px 10px rgba(40, 32, 27, .12) !important;
+  transform: translateY(-1px);
+}
+
+/* Mode sombre */
+[data-color-scheme="dark"] .sidebar .color-scheme-toggle,
+[data-color-scheme="dark"] .sidebar .forum-layout-toggle,
+[data-color-scheme="dark"] .sidebar .switcheroo__squircle,
+[data-color-scheme="dark"] .sidebar #FAM-button,
+[data-color-scheme="dark"] .sidebar #FAM-button-open,
+[data-color-scheme="dark"] .sidebar .sidebar_bottom > a {
+  background: #111217 !important;
+  border-color: rgba(255, 255, 255, .05) !important;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, .28) !important;
+}
+
+/* Survol sombre */
+[data-color-scheme="dark"] .sidebar .color-scheme-toggle:hover,
+[data-color-scheme="dark"] .sidebar .forum-layout-toggle:hover,
+[data-color-scheme="dark"] .sidebar .switcheroo__squircle:hover,
+[data-color-scheme="dark"] .sidebar #FAM-button:hover,
+[data-color-scheme="dark"] .sidebar #FAM-button-open:hover,
+[data-color-scheme="dark"] .sidebar .sidebar_bottom > a:hover {
+  color: #6572f3 !important;
+  background: #202129 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .42) !important;
+}
