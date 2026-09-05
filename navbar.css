@@ -2452,4 +2452,21 @@ a.mainmenu[href^="/register"]:before, a.mainmenu[href^="/register"]::before
   }
 }
 
+/* Navbar top — ouverture et fermeture plus douces */
+.navbar a.mainmenu,
+.navbar #fa_notifications {
+  transition:
+    max-width 0.75s cubic-bezier(.4, 0, .2, 1),
+    width 0.75s cubic-bezier(.4, 0, .2, 1),
+    padding-right 0.75s cubic-bezier(.4, 0, .2, 1),
+    color 0.35s ease-in-out,
+    background-color 0.35s ease-in-out !important;
+}
 
+/* Ouverture : douce, mais encore réactive */
+.navbar a.mainmenu:hover,
+.navbar a.mainmenu:focus-visible,
+.navbar #fa_notifications:hover,
+.navbar #fa_notifications:focus-visible {
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1) !important;
+}
