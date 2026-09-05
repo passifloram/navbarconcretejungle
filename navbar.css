@@ -205,14 +205,24 @@
 
 ul#notif_list {
   display: none;
+  flex-direction: column !important;
+  align-items: stretch !important;
   padding: 5px;
   background: var(--neutral);
   border: var(--border);
   border-radius: 5px;
 }
 
+#fa_right.notification ul#notif_list {
+  display: flex !important;
+}
+
 #notif_list li {
   position: relative;
+  display: block !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box;
+  width: 100% !important;
   padding: 5px 20px 5px 5px;
   border-top: 1px solid var(--neutralDark);
 }
@@ -459,6 +469,30 @@ ul#notif_list {
   position: relative !important;
   inset: auto !important;
   overflow: visible !important;
+}
+
+/* Compte actif conservé dans la barre : avatar strictement limité au bouton. */
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle:not(.cj-switcheroo-toggle) {
+  overflow: hidden !important;
+}
+
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle:not(.cj-switcheroo-toggle) .switcheroo__avatar,
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle:not(.cj-switcheroo-toggle) .switcheroo__avatar img {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 8px !important;
 }
 
 /* Le libellé du bouton d’ouverture ne doit pas sortir de la sidebar. */
@@ -738,6 +772,116 @@ ul#notif_list {
 }
 
 /* =========================================================
+   SWITCHEROO : FENÊTRE DE CONNEXION
+   ========================================================= */
+
+.monomer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  visibility: hidden;
+  background: rgba(0, 0, 0, .45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, visibility 0s linear .22s;
+}
+
+.monomer-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100002;
+  box-sizing: border-box;
+  visibility: hidden;
+  width: min(430px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 30px;
+  overflow-y: auto;
+  color: var(--textColor);
+  background: var(--neutral);
+  border-radius: 12px;
+  box-shadow: var(--shadowBox);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -47%) scale(.98);
+  transition:
+    opacity .22s ease,
+    transform .3s cubic-bezier(.22, 1, .36, 1),
+    visibility 0s linear .3s;
+}
+
+.monomer-overlay.monomer-open,
+.monomer-modal.monomer-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.monomer-modal.monomer-open {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.switcheroo__form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.switcheroo__form-label {
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.switcheroo__form-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px !important;
+  color: var(--textColor);
+  background: var(--neutral);
+  border: var(--border);
+  border-radius: 6px;
+}
+
+.switcheroo__form-button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 7px 13px;
+  color: var(--neutral);
+  background: var(--accentClr);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.switcheroo__form-button:hover {
+  background: var(--contrastLight);
+}
+
+.monomer-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  color: var(--textColor);
+  background: var(--neutralDark);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* =========================================================
    MODE SOMBRE DE LA SIDEBAR ET DU SWITCHEROO
    ========================================================= */
 
@@ -778,6 +922,7 @@ ul#notif_list {
 #FAM {
   --fam-accent: #bd6936;
   --fam-accent-soft: rgba(189, 105, 54, .12);
+  --fam-hover: rgba(189, 105, 54, .2);
   --fam-bg: #f3f0ec;
   --fam-panel: #fff;
   --fam-text: #302c2a;
@@ -810,6 +955,7 @@ ul#notif_list {
 [data-color-scheme="dark"] #FAM {
   --fam-accent: #6572f3;
   --fam-accent-soft: rgba(101, 114, 243, .16);
+  --fam-hover: rgba(101, 114, 243, .24);
   --fam-bg: #17181d;
   --fam-panel: #202127;
   --fam-text: #eeeef3;
@@ -955,6 +1101,12 @@ ul#notif_list {
   background: var(--fam-accent-soft) !important;
 }
 
+#FAM .FAM-tab:hover,
+#FAM .FAM-tab:focus-visible {
+  color: var(--fam-accent) !important;
+  background: var(--fam-hover) !important;
+}
+
 #FAM .FAM-tab-name {
   flex: 1;
   overflow: hidden;
@@ -1035,10 +1187,32 @@ ul#notif_list {
   padding: 8px 10px !important;
   overflow: hidden;
   box-sizing: border-box;
+  color: var(--fam-text) !important;
+  background: var(--fam-panel) !important;
+  border: 1px solid transparent !important;
+  border-radius: 13px !important;
+  cursor: pointer;
+  transition:
+    color .2s ease,
+    background-color .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
 }
 
 #FAM .FAM-chat:last-child {
   margin-bottom: 0 !important;
+}
+
+#FAM .FAM-chat:hover,
+#FAM .FAM-chat:focus-visible {
+  background: var(--fam-hover) !important;
+  border-color: var(--fam-accent) !important;
+  transform: translateX(3px);
+}
+
+#FAM .FAM-chat:hover .FAM-chat-title,
+#FAM .FAM-chat:focus-visible .FAM-chat-title {
+  color: var(--fam-accent) !important;
 }
 
 #FAM .FAM-chat-icon {
