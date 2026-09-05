@@ -24,12 +24,14 @@
   font-size: 0 !important;
 }
 
-.navbar a.mainmenu {
-  display: inline-flex;
+.navbar a.mainmenu,
+.navbar #fa_notifications {
+  display: inline-flex !important;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   box-sizing: border-box;
-  width: 36px;
+  width: auto;
+  min-width: 36px;
   max-width: 36px;
   height: 36px;
   margin: 0 3.5px !important;
@@ -39,41 +41,34 @@
   background: transparent;
   border-radius: 7px;
   font-family: var(--fontone);
-  font-size: 0 !important;
+  font-size: 12px !important;
   line-height: 36px;
   text-decoration: none;
   text-transform: lowercase;
   white-space: nowrap;
-  will-change: max-width;
   transition:
-    max-width .58s cubic-bezier(.25, .1, .25, 1),
-    font-size .2s ease .12s,
-    background-color .32s ease,
-    color .28s ease,
-    box-shadow .32s ease !important;
+    max-width .75s cubic-bezier(.4, 0, .2, 1),
+    padding-right .75s cubic-bezier(.4, 0, .2, 1),
+    color .35s ease-in-out,
+    background-color .35s ease-in-out !important;
 }
 
 .navbar a.mainmenu:hover,
-.navbar a.mainmenu:focus-visible {
-  justify-content: flex-start !important;
-  width: auto;
+.navbar a.mainmenu:focus-visible,
+.navbar #fa_notifications:hover,
+.navbar #fa_notifications:focus-visible {
   max-width: 180px;
   padding-right: 14px !important;
-  font-size: 12px !important;
   background: var(--neutralDark);
-  transition:
-    max-width .45s cubic-bezier(.25, .1, .25, 1),
-    font-size .2s ease .05s,
-    background-color .28s ease,
-    color .25s ease,
-    box-shadow .28s ease !important;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1) !important;
 }
 
 .navbar a.mainmenu img {
   display: none !important;
 }
 
-.navbar a.mainmenu::before {
+.navbar a.mainmenu::before,
+.navbar #fa_notifications::before {
   content: var(--nav-icon, "");
   display: grid !important;
   flex: 0 0 16px !important;
@@ -87,11 +82,13 @@
   font-size: 16px;
   line-height: 16px !important;
   text-align: center !important;
-  transition: margin-right .38s ease !important;
+  transition: margin-right .6s cubic-bezier(.4, 0, .2, 1) !important;
 }
 
 .navbar a.mainmenu:hover::before,
-.navbar a.mainmenu:focus-visible::before {
+.navbar a.mainmenu:focus-visible::before,
+.navbar #fa_notifications:hover::before,
+.navbar #fa_notifications:focus-visible::before {
   margin-right: 10px !important;
 }
 
@@ -111,7 +108,8 @@
   order: 3;
 }
 
-.navbar a[href^="/profile"] {
+.navbar a[href^="/profile"],
+.navbar a[href^="/u"] {
   --nav-icon: "\ea7d";
   order: 4;
 }
@@ -123,7 +121,8 @@
 
 .navbar #fa_notifications {
   --nav-icon: "\e95a";
-  display: inline-flex !important;
+  --notif-dot: var(--contrastDark, #302c2a);
+  position: relative !important;
   order: 6;
 }
 
@@ -132,7 +131,8 @@
   order: 7;
 }
 
-.navbar #logout {
+.navbar #logout,
+.navbar a[href^="/logout"] {
   --nav-icon: "\ea92";
   order: 7;
 }
@@ -902,19 +902,34 @@
   background: var(--fam-accent-soft) !important;
 }
 
+#FAM .FAM-container-content {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
 #FAM-content {
   flex: 1 1 auto !important;
-  min-height: 0;
-  padding: 12px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 6px !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   background: var(--fam-bg) !important;
   scrollbar-color: var(--fam-accent) transparent;
   scrollbar-width: thin;
 }
 
 #FAM-content::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+}
+
+#FAM-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 #FAM-content::-webkit-scrollbar-thumb {
@@ -924,67 +939,158 @@
 
 #FAM .FAM-chat {
   display: grid !important;
-  grid-template-columns: 42px minmax(0, 1fr);
+  grid-template-columns: 46px minmax(0, 1fr);
   grid-template-rows: auto auto;
-  margin-bottom: 8px !important;
-  padding: 11px !important;
-  gap: 3px 11px;
-  color: var(--fam-text) !important;
-  background: var(--fam-panel) !important;
-  border: 1px solid transparent !important;
-  border-radius: 13px !important;
-  cursor: pointer;
-  transition:
-    border-color .18s ease,
-    background-color .18s ease,
-    transform .18s ease;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 2px;
+  width: 100%;
+  min-height: 78px;
+  height: auto !important;
+  margin: 0 0 6px !important;
+  padding: 8px 10px !important;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-#FAM .FAM-chat:hover {
-  background: var(--fam-accent-soft) !important;
-  border-color: var(--fam-accent) !important;
-  transform: translateX(3px);
+#FAM .FAM-chat:last-child {
+  margin-bottom: 0 !important;
 }
 
 #FAM .FAM-chat-icon {
   display: none !important;
 }
 
-#FAM .FAM-chat-avatar {
-  grid-column: 1;
-  grid-row: 1 / 3;
+#FAM .FAM-topic-name {
+  display: none !important;
 }
 
-#FAM .FAM-chat-avatar,
+#FAM .FAM-chat-avatar {
+  position: static !important;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 46px !important;
+  height: 46px !important;
+  margin: 0 !important;
+  overflow: hidden;
+  border-radius: 11px;
+}
+
 #FAM .FAM-chat-avatar img {
-  width: 42px !important;
-  height: 42px !important;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover;
-  border-radius: 11px !important;
+  object-position: center;
+  border-radius: inherit;
+}
+
+#FAM .FAM-chat-content {
+  grid-column: 2;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+}
+
+#FAM .FAM-chat-title,
+#FAM .FAM-chat-date {
+  position: static !important;
+  left: auto !important;
+  width: auto !important;
+  min-width: 0;
+  padding: 0 !important;
+  white-space: normal;
+  overflow: visible;
 }
 
 #FAM .FAM-chat-title {
   grid-column: 2;
   grid-row: 1;
   align-self: end;
+  display: block;
+  max-width: 100%;
   overflow: hidden;
-  color: var(--fam-text) !important;
-  font-size: 14px !important;
-  font-weight: 800 !important;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 16px !important;
+  line-height: 1.15 !important;
+  font-weight: 700;
 }
 
 #FAM .FAM-chat-date {
   grid-column: 2;
   grid-row: 2;
   align-self: start;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden !important;
+  font-size: 13.5px !important;
+  line-height: 1.3 !important;
+  opacity: .78;
+}
+
+#FAM .FAM-chat-meta-main {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
-  color: var(--fam-muted) !important;
-  font-size: 12px !important;
-  line-height: 1.35;
+  white-space: nowrap;
+}
+
+#FAM .FAM-chat-topic {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+#FAM .FAM-chat-postdate {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+#FAM .FAM-chat-author {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#FAM .FAM-chat-author-label {
+  font-weight: 600;
+}
+
+#FAM .FAM-chat-separator {
+  padding: 0 .35em;
+  opacity: .55;
+}
+
+@media (max-width: 520px) {
+  #FAM .FAM-chat {
+    grid-template-columns: 42px minmax(0, 1fr);
+    min-height: 74px;
+    padding: 7px 8px !important;
+  }
+
+  #FAM .FAM-chat-avatar {
+    width: 42px !important;
+    height: 42px !important;
+  }
 }
 
 #FAM .FAM-msg {
@@ -1153,118 +1259,41 @@
   }
 }
 
-
-
 /* =========================================================
    PASTILLE DE NOTIFICATION
    ========================================================= */
 
-.navbar #fa_notifications {
-  --notif-dot: var(--contrastDark, #302c2a);
-  position: relative !important;
-}
-
-/* Cachée lorsqu’il n’y a aucune notification */
 .navbar #fa_notifications #notif_unread {
   display: none !important;
 }
 
-/* Visible uniquement quand Forumactif ajoute un nombre */
-.navbar #fa_notifications #notif_unread:not(:empty) {
-  position: absolute !important;
-  top: 5px !important;
-  left: 23px !important;
-  z-index: 2;
-
-  display: block !important;
-  box-sizing: border-box !important;
-  width: 9px !important;
-  min-width: 9px !important;
-  height: 9px !important;
-  min-height: 9px !important;
-  padding: 0 !important;
-
-  overflow: hidden;
-  color: transparent !important;
-  background: var(--notif-dot) !important;
-  border: 2px solid var(--neutral) !important;
-  border-radius: 50% !important;
-
-  font-size: 0 !important;
-  line-height: 0 !important;
-  pointer-events: none;
-
-  animation: cj-notification-pop .32s
-    cubic-bezier(.22, 1, .36, 1);
-}
-
-/* Pastille claire en mode sombre */
-[data-color-scheme="dark"] .navbar #fa_notifications {
-  --notif-dot: var(--contrastLight, #f4f1ed);
-}
-
-@keyframes cj-notification-pop {
-  0% {
-    opacity: 0;
-    transform: scale(.35);
-  }
-
-  70% {
-    opacity: 1;
-    transform: scale(1.18);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-
-/* =========================================================
-   PASTILLE DE NOTIFICATION — VERSION CORRIGÉE
-   ========================================================= */
-
-.navbar #fa_notifications {
-  --notif-dot: var(--contrastDark, #302c2a);
-  position: relative !important;
-}
-
-/* Pastille masquée par défaut */
 .navbar #fa_notifications::after {
   content: "";
-
   position: absolute !important;
   top: 5px !important;
   left: 23px !important;
   z-index: 5;
-
   box-sizing: border-box;
   width: 10px;
   height: 10px;
-
   background: var(--notif-dot);
   border: 2px solid var(--neutral);
   border-radius: 50%;
-
   opacity: 0;
   pointer-events: none;
   transform: scale(0);
-
   transition:
     opacity .2s ease,
     transform .3s cubic-bezier(.22, 1, .36, 1);
 }
 
-/* Forumactif ajoute .unread quand une notification est présente */
-.navbar #fa_notifications.unread::after {
+.navbar #fa_notifications.unread::after,
+.navbar #fa_notifications:has(#notif_unread:not(:empty))::after {
   opacity: 1;
   transform: scale(1);
-  animation: cj-notification-pop .35s
-    cubic-bezier(.22, 1, .36, 1);
+  animation: cj-notification-pop .35s cubic-bezier(.22, 1, .36, 1);
 }
 
-/* Pastille claire sur le thème sombre */
 [data-color-scheme="dark"] .navbar #fa_notifications {
   --notif-dot: var(--contrastLight, #f4f1ed);
 }
@@ -1284,1189 +1313,4 @@
     opacity: 1;
     transform: scale(1);
   }
-}
-
-
-/* Forumactif Messenger — liste des forums compacte et lisible */
-#FAM #FAM-content {
-  padding: 6px;
-}
-
-#FAM .FAM-chat {
-  display: grid !important;
-  grid-template-columns: 46px minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  align-items: center;
-  column-gap: 10px;
-  row-gap: 2px;
-  width: 100%;
-  min-height: 64px;
-  height: auto !important;
-  margin: 0 0 6px !important;
-  padding: 8px 10px !important;
-}
-
-#FAM .FAM-chat:last-child {
-  margin-bottom: 0 !important;
-}
-
-#FAM .FAM-chat-icon {
-  display: none !important;
-}
-
-#FAM .FAM-topic-name {
-  display: none !important;
-}
-
-#FAM .FAM-chat-avatar {
-  position: static !important;
-  grid-column: 1;
-  grid-row: 1 / 3;
-  align-self: center;
-  width: 46px !important;
-  height: 46px !important;
-  margin: 0 !important;
-  overflow: hidden;
-  border-radius: 11px;
-}
-
-#FAM .FAM-chat-avatar img {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  object-position: center;
-  border-radius: inherit;
-}
-
-#FAM .FAM-chat-content {
-  grid-column: 2;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-}
-
-#FAM .FAM-chat-title,
-#FAM .FAM-chat-date {
-  position: static !important;
-  left: auto !important;
-  width: auto !important;
-  min-width: 0;
-  padding: 0 !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-#FAM .FAM-chat-title {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: end;
-  font-size: 16px !important;
-  line-height: 1.15 !important;
-  font-weight: 700;
-}
-
-#FAM .FAM-chat-date {
-  grid-column: 2;
-  grid-row: 2;
-  align-self: start;
-  font-size: 13.5px !important;
-  line-height: 1.3 !important;
-  opacity: .78;
-}
-
-#FAM .FAM-chat-date br {
-  display: none;
-}
-
-#FAM .FAM-chat-separator {
-  padding: 0 .35em;
-  opacity: .55;
-}
-
-@media (max-width: 520px) {
-  #FAM .FAM-chat {
-    grid-template-columns: 42px minmax(0, 1fr);
-    min-height: 60px;
-    padding: 7px 8px !important;
-  }
-
-  #FAM .FAM-chat-avatar {
-    width: 42px !important;
-    height: 42px !important;
-  }
-}
-
-
-/* Scroll interne des messages Messenger */
-#FAM {
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-}
-
-#FAM-toolbar,
-#FAM-tab-container {
-  flex: 0 0 auto;
-}
-
-#FAM .FAM-container-content {
-  display: flex !important;
-  flex: 1 1 auto !important;
-  flex-direction: column !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-}
-
-#FAM #FAM-content {
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  height: auto !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
-}
-
-#FAM #FAM-actions {
-  flex: 0 0 auto;
-}
-
-/* Scrollbar */
-#FAM #FAM-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-#FAM #FAM-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#FAM #FAM-content::-webkit-scrollbar-thumb {
-  background: var(--accentClr);
-  border-radius: 999px;
-}
-
-
-/* =========================================================
-   CONCRETE JUNGLE — NAVBARS + SWITCHEROO + MESSENGER
-   Fichier autonome à charger APRÈS le CSS principal du thème.
-   Il utilise les variables du thème : --neutral, --accentClr,
-   --textColor, --border, --radius-normal, etc.
-   ========================================================= */
-
-/* SIDEBAR ------------------------------------------------------------------- */
-
-.sidebar {
-  position: fixed;
-  width: max-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px 10px;
-  z-index: 0;
-    bottom: 10px;
-    right: 10px;
-}
-
-/* Conteneur de switcheroo */
-.sidebar_top {
-  display: flex;
-  flex-direction: column;
-  gap: 10px
-}
-
-/* Conteneur de l'ascenseur
- * Sert essentiellement à définir où le placer dans la page */
-
-.sidebar_bottom {
-  width: 45px;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Lien de renvoi haut/bas */
-.sidebar_bottom > a {
-  padding: 5px 8px;
-  background: var(--neutralDark);
-  border-radius: 5px;
-  text-align: center;
-}
-
-/* CHANGEMENT DE THÈME ------------------------------------------------------- */
-@media (prefers-color-scheme: dark) {
-  .color-scheme-toggle .dark {
-    display: none;
-  }
-}
-@media (prefers-color-scheme: light) {
-  .color-scheme-toggle .light {
-    display: none;
-  }
-}
-.color-scheme-toggle,
-[data-color-scheme="light"] .color-scheme-toggle .dark,
-[data-color-scheme="dark"] .color-scheme-toggle .light {
-  display: block;
-  width: 100%;
-}
-
-[data-color-scheme="dark"] .color-scheme-toggle .dark,
-[data-color-scheme="light"] .color-scheme-toggle .light {
-  display: none;
-}
-
-.color-scheme-toggle {
-  background-color: var(--neutral);
-  padding: 1px 7px;
-  text-align: center;
-  border-radius: 5px;
-  color: var(--textColor);
-}
-
-.color-scheme-toggle:hover {
-  color: var(--accentClr);
-}
-
-.ion-ios-moon:before {
-    content: "\eca0"!important;
-  font-family:'cappuccicons';
-  font-size:14px;
-  color: var(--one);
-}
-
-.ion-ios-sunny:before {
-  color: var(--one);  font-size:24px;}
-
-.switch-theme {
-  position: fixed !important;
-  top: 0 !important;
-  left: 15px !important;
-  z-index: 999 !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  width: 35px;
-  height: 42px !important;
-  margin-top: 0 !important;
-  transform: translateZ(0) !important;
-}
-
-/* TOOLBAR ET NOTIFICATIONS ------------------------------------------------- */
-
-/* Toute la toolbar */
-#fa_toolbar {
-  font-size: var(--little-size);
-  font-family: var(--font);
-}
-
-/* Supression de la barre de recherche, des boutons sociaux et des flèches */
-#fa_search,
-#fa_share,
-#fa_hide {
-  display: none;
-}
-
-/* Logo Forumactif : 
- * ATTENTION, il est techniquement interdit de supprimer de logo de FA. 
- * Techniquement. Faites-en donc ce que vous voulez. */
-#fa_left {
-  display: none;
-}
-
-/* Masquer le logo Forumactif qui dépasse sous la navbar */
-#header img {
-  display: none !important;
-}
-
-/* Conteneur du lien de bienvenue et notification */
-#fa_right {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-}
-
-/* Le profil passe par la navbar : on retire seulement le doublon Bienvenue. */
-#fa_welcome,
-#fa_menulist,
-#fa_usermenu,
-.fa_avatar {
-  display: none !important;
-}
-
-/* LIENS DE LA TOOLBAR ---*/
-
-/* Tous les liens : connexion, s\\\'enregistrer, bienvenue (pseudo), notification*/
-#fa_welcome,
-#fa_notifications,
-#fa_right a.rightHeaderLink[href*="/login"],
-#fa_right a.rightHeaderLink[href*="/register"] {
-  cursor: pointer;
-  padding: 4px 6px;
-}
-
-
-/* Lien \\\"Bienvenue (pseudo)\\\" */
-#fa_welcome {font-family: var(--fontone);
-    text-transform: uppercase;}
-
-#fa_welcome:before, #fa_welcome::before{ 
-    content: "\eb81";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-    color:var(--accentClr);}
-
-/* Lien \\\"notification\\\"*/
-#fa_notifications {font-family: var(--fontone);
-    text-transform: uppercase;}
-
-/* Une fois déplacé dans la navbar, le bouton natif se comporte comme les
- * autres liens : icône seule, puis libellé au survol. */
-.navbar #fa_notifications {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  width: 36px;
-  max-width: 36px;
-  height: 36px;
-  margin: 0;
-  padding: 0 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  border-radius: 7px;
-  background: var(--neutralDark);
-  color: var(--textColor);
-  line-height: 36px;
-  transition: max-width .45s ease, width .45s ease,
-              padding .45s ease, color .25s ease,
-              background-color .25s ease;
-}
-
-.navbar #fa_notifications:hover,
-.navbar #fa_notifications:focus-visible {
-  width: auto;
-  max-width: 165px;
-  padding-right: 14px;
-  background: var(--neutral);
-}
-
-#fa_notifications:before, #fa_notifications::before { 
-    content: "\e95a";
-    font-family: 'cappuccicons';
-    flex: 0 0 16px;
-    width: 16px;
-    margin: 0 10px 0 0;
-    position: relative;
-    top: 1px;
-  color:var(--accentClr);}
-
-
-/* Lien \\\"Connexion\\\" */
-#fa_right a.rightHeaderLink[href*="/login"] {display:none;}
-
-/* Lien \\\"S\\\'enregistrer\\\" */
-#fa_right a.rightHeaderLink[href*="/register"] {display:none;}
-
-/* liens \\\"bienvenue\\\" et \\\"notification\\\" [AU CLIC] */
-#fa_right.welcome #fa_menu #fa_welcome,
-#fa_toolbar > #fa_right.notification > #fa_notifications {
-  background: var(--neutralDark);
-  border-radius: 5px;
-}
-
-/* MENU bienvenue [ET] liste des notifications */
-ul#fa_menulist,
-ul#notif_list {
-  border: var(--border);
-  background: var(--neutral);
-  border-radius: 5px;
-  right: 0;
-  left: initial !important;
-  top: 45px;
-  z-index: 999;
-  position: absolute;
-  display: none;
-}
-
-/* MENU BIENVENUE ---*/
-/* conteneur */
-#fa_menulist {
-  width: 350px;
-}
-
-/* Colonne gauche du menu de bienvenue avec avatar */
-#fa_usermenu {
-  float: left;
-  padding: 15px;
-  text-align: center;
-  min-height: 250px;
-}
-
-/* Image de l\\\'avatar dans le menu de bienvenue */
-#fa_usermenu img {
-  object-fit: cover;
-  object-position: center;
-  width: 120px;
-  height: 120px;
-  display: block;
-  margin-bottom: 10px;
-}
-
-/* Liens du menu de bienvenue */
-#fa_menulist li {
-  margin: 10px 0;
-}
-
-/* Séparateur du menu de bienvenue */
-#fa_toolbar #fa_right .fa_separator {
-  margin: 5px 0 5px 150px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* LISTE DES NOTIFICATIONS ---*/
-/* conteneur*/
-#notif_list {
-  width: 380px;
-  padding: 5px;
-  flex-direction: column-reverse;
-}
-
-/* Ligne d\\\'une notification */
-#notif_list li {
-  position: relative;
-  padding: 5px;
-  padding-right: 20px;
-  border-top: 1px solid var(--neutralDark);
-}
-
-#notif_list li:nth-last-child(2) {
-  border-top: none;
-}
-
-/* Notifications non lues */
-#notif_list .unread {
-  background: var(--neutralDark);
-  font-weight: bold;
-}
-
-/* Bouton suppresion d\\\'une notification */
-#fa_toolbar #fa_right #notif_list li a.delete {
-  position: absolute;
-  top: 8px;
-  right: 5px;
-}
-
-/* Croix du bouton suppression */
-#fa_toolbar #fa_right #notif_list li a.delete:before {
-  content: "\f12a";
-  display: inline-block;
-  font-family: "Ionicons";
-  font-style: normal;
-  font-weight: normal;
-  color: #ff4f42;
-}
-
-/* Lien \\\"voir toutes les notifications\\\" */
-#notif_list .see_all {
-  background: var(--neutralDark);
-  border-radius: 5px;
-  margin-top: 5px;
-  text-align: center;
-  order: -1;
-}
-
-/* POPUP NOTIFICATION ---*/
-
-/* Placement du pop-up de nouvelle notification */
-#fa_toolbar #live_notif {
-  position: absolute;
-  top: 45px;
-  right: 0px !important;
-}
-
-/* Stylisation du pop-up */
-#fa_toolbar #live_notif .fa_notification {
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 5px;
-}
-
-/* AVATAR TOOLBAR ---*/
-/* Conteneur de l\\\'avatar toolbar */
-.fa_avatar {
-  position: absolute;
-  top: -1px;
-  left: -45px;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-}
-
-/* Image de l\\\'avatar */
-.fa_avatar img {
-  object-fit: cover;
-  object-position: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-}
-
-/*** ------------------------------- ***/
-/* SWITCHEROO ET CONNEXION --------------------------------------------------
-   Gestionnaire de multicompte créé par Monomer.
-   -------------------------------------------------------------------------- */
-
-:root {
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce: cubic-bezier(0.43, 0.09, 0.38, 2.56);
-}
-
-/* BARRE SWITCHEROO --- */
-/* BARRE --- */
-.switcheroo {
-  color: var(--textColor);
-    z-index: 999;
-    position: fixed;
-  margin-left: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-}
-
-
-#switcheroo {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  z-index: 999 !important;
-  height: 42px !important;
-  margin-top: 0 !important;
-  margin-left: 45px !important;
-  transform: translateZ(0) !important;
-}
-/* Positionnement des ronds */
-.switcheroo__squircles {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  gap: 10px;
-  padding: 8px 15px;
-  z-index: 999!important;
-}
-
-/* AFFICHAGE DES COMPTES ---*/
-
-/* Rond */
-.switcheroo__squircle {
-  position: relative;
-  display: grid;
-  place-items: center;
-  background-color: var(--neutralOne);
-  width: 20px;
-  height: 20px;
-  border-radius: var(--radius-normal);
-  cursor: pointer;
-  outline: 5px solid transparent;
-  transition: border-radius 128ms var(--ease);
-      z-index: 999;
-}
-
-/* Rond au survol */
-.switcheroo__squircle:hover {
-  outline-color: var(--neutralDark);
-  border-radius: 8px;
-      z-index: 999;
-}
-
-.switcheroo__squircle:hover img {
-  border-radius: 8px;
-      z-index: 999;
-}
-
-/* Conteneur de l\\\'avatar */
-.switcheroo__avatar {
-  width: 100%;
-  aspect-ratio: 1/1;
-      z-index: 999;
-}
-
-/* Image de l\\\'avatar */
-.switcheroo__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: var(--radius-normal);
-  transition: border-radius 128ms var(--ease);
-  position: relative;
-      z-index: 999;
-}
-
-/* Avatar du compte connecté */
-.switcheroo__squircle.active,
-.switcheroo__squircle.active img {
-  outline-color: var(--neutralDark);
-  cursor: default;
-      z-index: 999;
-}
-
-/* AJOUTER UN COMPTE ---*/
-/* button : ajouter un compte */
-.switcheroo__squircle--button {
-  transition: border-radius 128ms var(--ease);
-  color: var(--contrastLight);
-      z-index: 999;
-}
-
-/* icon plus */
-.switcheroo__squircle--button i {
-  font-size: 19px;
-      z-index: 999;
-}
-
-.switcheroo__squircle--button:hover {
-  color: var(--accentClr);
-      z-index: 999;
-}
-
-/* Bouton de suppression */
-.switcheroo__delete {
-  display: grid;
-  place-items: center;
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: -7px;
-  right: -7px;
-  border-radius: 50%;
-  background-color: var(--accentClr);
-  transform: scale(0);
-  opacity: 1;
-  transition: transform 128ms var(--ease), opacity 64ms var(--ease);
-  cursor: pointer;
-  color: var(--neutral);
-  line-height: 0;
-      z-index: 999;
-}
-
-.switcheroo__squircle:hover .switcheroo__delete {
-  opacity: 1;
-  transform: scale(1);
-      z-index: 999;
-}
-
-/* TOOLTIP - INFOBULLE DU PSEUDO ---*/
-
-/* Conteneur du pseudo */
-.switcheroo__popper {
-  background-color: var(--neutralDarker);
-  padding: 0.3rem 1rem;
-  position: absolute;
-  width: -webkit-max-content;
-  width: max-content;
-  border-radius: 5px;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 64ms var(--ease), transform 128ms var(--ease-bounce);
-  pointer-events: none;
-  color: var(--textColor);
-  left: 155%;
-  top: 50%;
-  transform-origin: left;
-  transform: translateY(-50%) scale(0.98);
-}
-
-/* Flèche tooltip */
-.switcheroo__popper:before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: var(--neutralDarker);
-  z-index: -1;
-  left: -3px;
-  top: 50%;
-  transform: translateY(-50%) rotate(-45deg);
-  border-radius: 2px;
-}
-
-.switcheroo__squircle:hover .switcheroo__popper {
-  opacity: 1;
-  transform: translateY(-50%) scale(1);
-}
-
-/* LOGO --- retirez display:none pour retrouver le logo */
-.switcheroo__logo,
-.switcheroo__divider {
-  display: none;
-}
-
-/* MODAL : FENETRE DE CONNEXION --- */
-
-/* Fond de l\\\'affichage de connexion */
-.monomer-overlay {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  transition: 0.2s opacity ease;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-/* Boîte de connexion */
-.monomer-modal {
-  position: fixed;
-  z-index: 999;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  width: 94%;
-  padding: 30px;
-  transition: 0.2s opacity ease;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  background: var(--neutral);
-  padding: 50px;
-  box-shadow: var(--shadowBox);
-}
-
-/* Champs à remplir */
-.switcheroo__form-row {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-/* Nom du champ */
-.switcheroo__form-label {
-  margin-bottom: 8px;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-/* Zone de texte */
-.switcheroo__form-input {
-  padding: 6px !important;
-  border-radius: 4px;
-  width: 100%;
-  background-color: var(--neutral);
-  color: var(--contrastLight);
-  cursor: text;
-}
-
-/* Bouton de connexion */
-.switcheroo__form-button {
-  border-radius: 8px;
-  padding: 4px 10px 5px;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  text-transform: uppercase;
-  font-size: 14px;
-  align-self: center;
-  background-color: var(--accentClr);
-  cursor: pointer;
-  color: var(--neutral);
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-.switcheroo__form-button:hover {
-  background: var(--contrastLight);
-}
-
-.monomer-modal.monomer-open,
-.monomer-overlay.monomer-open {
-  opacity: 1;
-}
-
-/* Fermer la boîte de connexion */
-.monomer-close {
-  font-size: 16px;
-  line-height: 12px;
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  color: var(--textColor);
-  border: 0;
-  outline: none;
-  background: var(--contrastLighter);
-  border-radius: 4px;
-  padding: 0;
-  padding-left: 1px;
-}
-
-.monomer-close:hover {
-  background: var(--contrastLight);
-}
-
-/*** ------------------------------- ***/
-/* BARRE DE NAVIGATION ------------------------------------------------------ */
-
-/* Conteneur de la barre de nav */
-.navbar {
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
-  left: 0 !important;
-  z-index: 998 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100% !important;
-  height: 42px !important;
-  min-height: 42px !important;
-  margin: 0 !important;
-  padding: 10px;
-  background: var(--neutral);
-  font-size: 0;
-  transform: translateZ(0) !important;
-  backface-visibility: hidden !important;
-  transition: color 0.25s ease,
-              background-color 0.25s ease,
-              border-color 0.25s ease !important;
-}
-
-/* Suppression des liens peu utilisés*/
-.navbar a[href^="/faq"],/*faq*/
-.navbar a[href^="/calendar"],/*calendrier*/
-.navbar a[href^="/groups"],/*groupes*/
-.navbar a[href^="/images"]/*Dernières images*/, 
-.navbar a[href^="/portal"]/*portail*/, 
-.navbar a[href^="/discover"] /*activites*/ {
-  display: none !important;
-}
-
-/* Forumactif entoure chaque lien de son propre li. display:contents évite
- * que ces conteneurs et leurs espaces insécables cassent le centrage. */
-.navbar > li {
-  display: contents;
-}
-
-/* Lien fermé : seule l'icône apparaît. */
-.navbar a.mainmenu {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  width: 36px;
-  max-width: 36px;
-  height: 36px;
-  margin: 0;
-  padding: 0 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  border-radius: 7px;
-  background: var(--neutralDark);
-  color: var(--textColor);
-  font-size: var(--little-size);
-  line-height: 36px;
-  text-transform: lowercase;
-  text-decoration: none;
-  transition: max-width .45s ease, width .45s ease,
-              padding .45s ease, color .25s ease,
-              background-color .25s ease;
-}
-
-/* Le libellé se déplie au survol ou au clavier. */
-.navbar a.mainmenu:hover,
-.navbar a.mainmenu:focus-visible {
-  width: auto;
-  max-width: 165px;
-  padding-right: 14px;
-  background: var(--neutral);
-}
-
-/* Image des liens */
-a.mainmenu img {
-  display: none;
-}
-
-
-
-/* ajout d\\\'icons devant les liens de nav */
-
-.navbar a.mainmenu[href="/forum"]::before,
-.navbar a.mainmenu[href="/"]::before {
-    content: "\eb0d";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color: var(--accentClr);}
-
-a.mainmenu[href^="/search"]:before, a.mainmenu[href^="/search"]::before 
-{
-    content: "\ec5f";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color: var(--accentClr);
-}
-
-a.mainmenu[href^="/memberlist"]:before, a.mainmenu[href^="/memberlist"]::before 
-{
-    content: "\e9c2";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color:var(--accentClr);
-}
-
-.navbar a.mainmenu[href^="/profile"]::before,
-.navbar a.mainmenu[href^="/u"]::before
-{
-    content: "\ea7d";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color:var(--accentClr);
-}
-
-a.mainmenu[href^="/privmsg"]:before, a.mainmenu[href^="/privmsg"]::before 
-{
-    content: "\ea8b";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color:var(--accentClr);
-}
-
-a.mainmenu[href^="/login"]:before, a.mainmenu[href^="/login"]::before 
-{
-    content: "\ec19";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color:var(--accentClr);
-}
-
-a.mainmenu[href^="/logout"]:before, a.mainmenu[href^="/logout"]::before 
-{
-    content: "\ea92";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color:var(--accentClr);
-}
-
-a.mainmenu[href^="/register"]:before, a.mainmenu[href^="/register"]::before 
-{
-    content: "\e903";
-    font-family: 'cappuccicons';
-    margin: 0 10px;
-    position: relative;
-    top: 2px;
-  color:var(--accentClr);
-}
-
-/* Forumactif Messenger — liste des forums compacte et lisible */
-#FAM #FAM-content {
-  padding: 6px;
-}
-
-#FAM .FAM-chat {
-  display: grid !important;
-  grid-template-columns: 46px minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  align-items: center;
-  column-gap: 10px;
-  row-gap: 2px;
-  width: 100%;
-  min-height: 78px;
-  height: auto !important;
-  margin: 0 0 6px !important;
-  padding: 8px 10px !important;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-#FAM .FAM-chat:last-child {
-  margin-bottom: 0 !important;
-}
-
-#FAM .FAM-chat-icon {
-  display: none !important;
-}
-
-#FAM .FAM-topic-name {
-  display: none !important;
-}
-
-#FAM .FAM-chat-avatar {
-  position: static !important;
-  grid-column: 1;
-  grid-row: 1 / 3;
-  align-self: center;
-  width: 46px !important;
-  height: 46px !important;
-  margin: 0 !important;
-  overflow: hidden;
-  border-radius: 11px;
-}
-
-#FAM .FAM-chat-avatar img {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  object-position: center;
-  border-radius: inherit;
-}
-
-#FAM .FAM-chat-content {
-  grid-column: 2;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  overflow: hidden;
-}
-
-#FAM .FAM-chat-title,
-#FAM .FAM-chat-date {
-  position: static !important;
-  left: auto !important;
-  width: auto !important;
-  min-width: 0;
-  padding: 0 !important;
-  white-space: normal;
-  overflow: visible;
-}
-
-#FAM .FAM-chat-title {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: end;
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 16px !important;
-  line-height: 1.15 !important;
-  font-weight: 700;
-}
-
-#FAM .FAM-chat-date {
-  grid-column: 2;
-  grid-row: 2;
-  align-self: start;
-  display: flex;
-  flex-direction: column;
-  width: 100% !important;
-  max-width: 100%;
-  min-width: 0;
-  overflow: hidden !important;
-  font-size: 13.5px !important;
-  line-height: 1.3 !important;
-  opacity: .78;
-}
-
-#FAM .FAM-chat-meta-main {
-  display: flex;
-  align-items: baseline;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-#FAM .FAM-chat-topic {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#FAM .FAM-chat-postdate {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-#FAM .FAM-chat-author {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#FAM .FAM-chat-author-label {
-  font-weight: 600;
-}
-
-#FAM .FAM-chat-separator {
-  padding: 0 .35em;
-  opacity: .55;
-}
-
-@media (max-width: 520px) {
-  #FAM .FAM-chat {
-    grid-template-columns: 42px minmax(0, 1fr);
-    min-height: 74px;
-    padding: 7px 8px !important;
-  }
-
-  #FAM .FAM-chat-avatar {
-    width: 42px !important;
-    height: 42px !important;
-  }
-}
-
-/* Navbar top — ouverture et fermeture plus douces */
-.navbar a.mainmenu,
-.navbar #fa_notifications {
-  transition:
-    max-width 0.75s cubic-bezier(.4, 0, .2, 1),
-    width 0.75s cubic-bezier(.4, 0, .2, 1),
-    padding-right 0.75s cubic-bezier(.4, 0, .2, 1),
-    color 0.35s ease-in-out,
-    background-color 0.35s ease-in-out !important;
-}
-
-/* Ouverture : douce, mais encore réactive */
-.navbar a.mainmenu:hover,
-.navbar a.mainmenu:focus-visible,
-.navbar #fa_notifications:hover,
-.navbar #fa_notifications:focus-visible {
-  transition-timing-function: cubic-bezier(.22, 1, .36, 1) !important;
 }
