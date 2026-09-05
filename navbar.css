@@ -1572,3 +1572,69 @@ ul#notif_list {
     transform: scale(1);
   }
 }
+
+/* Switcheroo — centrage forcé de l’avatar actif */
+.sidebar #switcheroo > .switcheroo__squircles {
+  align-items: center !important;
+}
+
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle.active {
+  position: relative !important;
+  inset: auto !important;
+  display: grid !important;
+  place-items: center !important;
+
+  box-sizing: border-box !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  transform: none !important;
+}
+
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle.active > a {
+  position: absolute !important;
+  inset: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle.active .switcheroo__avatar,
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle.active .switcheroo__avatar img {
+  position: absolute !important;
+  inset: 0 !important;
+
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 36px !important;
+  height: 36px !important;
+
+  margin: auto !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 8px !important;
+  transform: none !important;
+}
+
+/* Messenger — supprimer uniquement la bordure au survol */
+#FAM .FAM-chat:hover,
+#FAM .FAM-chat:focus-visible {
+  border-color: transparent !important;
+}
