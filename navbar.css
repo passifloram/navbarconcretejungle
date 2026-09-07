@@ -1638,3 +1638,40 @@ ul#notif_list {
 #FAM .FAM-chat:focus-visible {
   border-color: transparent !important;
 }
+
+
+/* Bouton En Inclusif */
+#replaceButton {
+  appearance: none;
+  box-sizing: border-box;
+  padding: 10px 15px !important;
+  border: none;
+  border-radius: var(--radius-normal, 5px);
+
+  background: var(--neutralDarker);
+  color: var(--contrastLight);
+
+  font-family: var(--font);
+  font-size: var(--normal-size);
+  font-weight: 600;
+  line-height: normal;
+  text-transform: none;
+  letter-spacing: normal;
+
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#replaceButton:hover:not(:disabled) {
+  color: var(--accentClr);
+}
+
+#replaceButton:focus-visible {
+  outline: 2px solid var(--accentClr);
+  outline-offset: 3px;
+}
+
+#replaceButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
