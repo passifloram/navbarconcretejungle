@@ -1,28 +1,80 @@
-/* =========================================================
-   NAVBAR SUPÉRIEURE
-   ========================================================= */
+/* ==========================================================
+   SOMMAIRE — MOTS-CLÉS POUR CTRL + F
+
+   NAVIGATION ET NOTIFICATIONS
+   - NAVBAR SUPÉRIEURE
+   - TOOLBAR ET NOTIFICATIONS
+
+   SIDEBAR ET COMPTES
+   - SIDEBAR DROITE
+   - BOUTON DE THÈME
+   - SWITCHEROO : CONTRÔLES PRINCIPAUX
+   - SWITCHEROO : PANNEAU AVATAR + NOM
+   - SWITCHEROO : FENÊTRE DE CONNEXION
+   - MODE SOMBRE DE LA SIDEBAR ET DU SWITCHEROO
+
+   FORUMACTIF MESSENGER
+   - FORUMACTIF MESSENGER
+   - MESSENGER MODE SOMBRE
+   - MESSENGER OUVERTURE ET FERMETURE
+   - MESSENGER BARRE SUPÉRIEURE
+   - MESSENGER MENU DES OPTIONS
+   - MESSENGER ONGLETS
+   - MESSENGER ZONE DE CONTENU
+   - MESSENGER LISTE DES CONVERSATIONS
+   - MESSENGER CONVERSATIONS SUR MOBILE
+   - MESSENGER MESSAGES
+   - MESSENGER FORMULAIRE DE RÉPONSE
+
+   RESPONSIVE ET ANIMATIONS
+   - RESPONSIVE
+   - SIDEBAR SUR ÉCRAN DE FAIBLE HAUTEUR
+   - MESSENGER SUR PETIT ÉCRAN
+   - SWITCHEROO SUR PETIT ÉCRAN
+   - RÉDUCTION DES ANIMATIONS
+
+   LES PETITES CORRECTIONS ET BOUTONS
+   - PASTILLE DE NOTIFICATION
+   - SWITCHEROO : CENTRAGE DE L’AVATAR ACTIF
+   - MESSENGER : BORDURE AU SURVOL
+   - BOUTON EN INCLUSIF
+   ========================================================== */
+
+
+/* NAVBAR SUPÉRIEURE */
 
 .navbar {
   position: fixed !important;
   inset: 0 0 auto !important;
   z-index: 998;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   box-sizing: border-box;
   width: 100% !important;
   height: 55px !important;
+
   margin: 0 !important;
   padding: 9px !important;
+
   gap: 0 !important;
+
   background: var(--neutral);
+
   font-size: 0 !important;
 }
 
+/* Éléments de liste intégrés à la barre */
+
 .navbar > li {
   display: contents;
+
   font-size: 0 !important;
 }
+
+/* Liens de navigation et bouton des notifications */
 
 .navbar a.mainmenu,
 .navbar #fa_notifications {
@@ -30,108 +82,142 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+
   box-sizing: border-box;
   width: auto;
   min-width: 36px;
   max-width: 36px;
+
   interpolate-size: allow-keywords;
+
   height: 36px;
+
   margin: 0 3.5px !important;
   padding: 0 10px !important;
   overflow: hidden;
+
   color: var(--textColor) !important;
   background: transparent;
   border-radius: 7px;
+
   font-family: var(--fontone);
   font-size: 12px !important;
   line-height: 36px;
   text-decoration: none;
   text-transform: lowercase;
   white-space: nowrap;
+
   transition:
     max-width .72s ease,
     background-color .3s ease !important;
 }
+
+/* Déploiement du libellé au survol ou au clavier */
 
 .navbar a.mainmenu:hover,
 .navbar a.mainmenu:focus-visible,
 .navbar #fa_notifications:hover,
 .navbar #fa_notifications:focus-visible {
   max-width: fit-content;
+
   background: var(--neutralDark);
 }
+
+/* Masquer les anciennes images de navigation */
 
 .navbar a.mainmenu img {
   display: none !important;
 }
 
+/* Icônes communes aux liens de la navbar */
+
 .navbar a.mainmenu::before,
 .navbar #fa_notifications::before {
   content: var(--nav-icon, "");
+
   display: grid !important;
   flex: 0 0 16px !important;
   place-items: center !important;
+
   box-sizing: border-box;
   width: 16px !important;
   height: 16px !important;
+
   margin: 0 !important;
+
   color: var(--accentClr);
+
   font-family: "cappuccicons";
   font-size: 16px;
   line-height: 16px !important;
   text-align: center !important;
+
   transition: none !important;
 }
+
+/* Icônes et ordre des liens */
 
 .navbar a[href="/"],
 .navbar a[href="/forum"] {
   --nav-icon: "\eb0d";
+
   order: 1;
 }
 
 .navbar a[href^="/search"] {
   --nav-icon: "\ec5f";
+
   order: 2;
 }
 
 .navbar a[href^="/memberlist"] {
   --nav-icon: "\e9c2";
+
   order: 3;
 }
 
 .navbar a[href^="/profile"],
 .navbar a[href^="/u"] {
   --nav-icon: "\ea7d";
+
   order: 4;
 }
 
 .navbar a[href^="/privmsg"] {
   --nav-icon: "\ea8b";
+
   order: 5;
 }
 
 .navbar #fa_notifications {
   --nav-icon: "\e95a";
   --notif-dot: var(--contrastDark, #302c2a);
+
   position: relative !important;
+
   order: 6;
 }
 
 .navbar a[href^="/login"]:not(#logout) {
   --nav-icon: "\ec19";
+
   order: 7;
 }
 
 .navbar #logout,
 .navbar a[href^="/logout"] {
   --nav-icon: "\ea92";
+
   order: 7;
 }
 
 .navbar a[href^="/register"] {
   --nav-icon: "\e903";
+
   order: 8;
 }
+
+/* Liens non affichés dans la navbar */
 
 .navbar a[href^="/faq"],
 .navbar a[href^="/calendar"],
@@ -146,21 +232,25 @@
   font-size: 12px !important;
 }
 
-/* =========================================================
-   TOOLBAR ET NOTIFICATIONS
-   ========================================================= */
+/* TOOLBAR ET NOTIFICATIONS */
 
 #fa_toolbar {
   position: fixed !important;
   inset: 0 auto auto 0 !important;
   z-index: 999;
+
   width: 0 !important;
   height: 0 !important;
+
   overflow: visible !important;
+
   background: transparent !important;
+
   font-family: var(--font);
   font-size: var(--little-size);
 }
+
+/* Outils natifs masqués */
 
 #fa_search,
 #fa_share,
@@ -176,16 +266,23 @@
   display: none !important;
 }
 
+/* Conteneur des notifications */
+
 #fa_right {
   position: fixed !important;
   inset: 0 0 auto auto !important;
   z-index: 999;
+
   width: 0 !important;
   height: 0 !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   background: transparent !important;
 }
+
+/* Position et dimensions du panneau */
 
 #fa_toolbar #fa_right #notif_list,
 #fa_right.notification #notif_list {
@@ -194,20 +291,27 @@
   left: 50vw !important;
   right: auto !important;
   z-index: 1000 !important;
+
   box-sizing: border-box;
   width: min(380px, calc(100vw - 30px)) !important;
   max-height: calc(100vh - 80px);
+
   margin: 0 !important;
   overflow-x: hidden;
   overflow-y: auto;
+
   transform: translateX(-50%) !important;
 }
+
+/* Liste des notifications */
 
 ul#notif_list {
   display: none;
   flex-direction: column !important;
   align-items: stretch !important;
+
   padding: 5px;
+
   background: var(--neutral);
   border: var(--border);
   border-radius: 5px;
@@ -217,13 +321,19 @@ ul#notif_list {
   display: flex !important;
 }
 
+/* Notification individuelle */
+
 #notif_list li {
   position: relative;
+
   display: block !important;
   flex: 0 0 auto !important;
+
   box-sizing: border-box;
   width: 100% !important;
+
   padding: 5px 20px 5px 5px;
+
   border-top: 1px solid var(--neutralDark);
 }
 
@@ -231,10 +341,15 @@ ul#notif_list {
   border-top: 0;
 }
 
+/* Mise en évidence des notifications non lues */
+
 #notif_list .unread {
   background: var(--neutralDark);
+
   font-weight: 700;
 }
+
+/* Bouton de suppression */
 
 #fa_toolbar #fa_right #notif_list li a.delete {
   position: absolute;
@@ -244,19 +359,28 @@ ul#notif_list {
 
 #fa_toolbar #fa_right #notif_list li a.delete::before {
   content: "\f12a";
+
   display: inline-block;
+
   color: #ff4f42;
+
   font-family: "Ionicons";
   font-style: normal;
   font-weight: 400;
 }
 
+/* Lien vers toutes les notifications */
+
 #notif_list .see_all {
   margin-top: 5px;
+
   background: var(--neutralDark);
   border-radius: 5px;
+
   text-align: center;
 }
+
+/* Notifications affichées en direct */
 
 #fa_toolbar #live_notif {
   position: fixed;
@@ -266,13 +390,12 @@ ul#notif_list {
 
 #fa_toolbar #live_notif .fa_notification {
   padding: 5px;
+
   background: rgba(0, 0, 0, .2);
   border-radius: 5px;
 }
 
-/* =========================================================
-   SIDEBAR DROITE
-   ========================================================= */
+/* SIDEBAR DROITE */
 
 .sidebar {
   position: fixed !important;
@@ -280,22 +403,31 @@ ul#notif_list {
   right: 0 !important;
   bottom: auto !important;
   z-index: 99998 !important;
+
   display: flex !important;
   flex-direction: column;
   align-items: center;
+
   box-sizing: border-box;
   width: 55px !important;
+
   margin: 0 !important;
   padding: 9px !important;
+
   gap: 7px;
+
   overflow: visible !important;
+
   background: var(--neutral) !important;
   border: 1px solid rgba(45, 40, 37, .05) !important;
   border-right: 0 !important;
   border-radius: 8px 0 0 8px;
   box-shadow: 0 6px 20px rgba(40, 32, 27, .1) !important;
+
   transform: translateY(-50%);
 }
+
+/* Conteneurs internes de la sidebar */
 
 .sidebar_top,
 .sidebar_bottom {
@@ -303,6 +435,7 @@ ul#notif_list {
 }
 
 /* Taille commune réservée aux contrôles principaux. */
+
 .sidebar .switch-theme,
 .sidebar .switch-theme [data-theme-controls],
 .sidebar .color-scheme-toggle,
@@ -314,6 +447,7 @@ ul#notif_list {
   display: grid !important;
   flex: 0 0 36px !important;
   place-items: center !important;
+
   box-sizing: border-box !important;
   width: 36px !important;
   min-width: 36px !important;
@@ -321,9 +455,12 @@ ul#notif_list {
   height: 36px !important;
   min-height: 36px !important;
   max-height: 36px !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   line-height: 1 !important;
+
   border-radius: 8px !important;
 }
 
@@ -335,20 +472,26 @@ ul#notif_list {
 .sidebar .sidebar_bottom > a {
   position: static !important;
   inset: auto !important;
+
   float: none !important;
+
   color: var(--accentClr) !important;
   background: transparent !important;
   border: 1px solid transparent !important;
   box-shadow: none !important;
+
   font-size: 16px !important;
   text-align: center;
   text-decoration: none;
+
   cursor: pointer;
   transition:
     color .18s ease,
     background-color .18s ease,
     transform .18s ease;
 }
+
+/* Survol et navigation au clavier */
 
 .sidebar .color-scheme-toggle:hover,
 .sidebar #switcheroo .forum-layout-toggle:hover,
@@ -365,8 +508,11 @@ ul#notif_list {
   color: var(--accentClr) !important;
   background: rgba(189, 105, 54, .13) !important;
   box-shadow: none !important;
+
   transform: translateY(-1px);
 }
+
+/* Alignement des icônes */
 
 .sidebar .color-scheme-toggle > *,
 .sidebar .forum-layout-toggle > *,
@@ -375,16 +521,16 @@ ul#notif_list {
 .sidebar #FAM-button-open > i,
 .sidebar .sidebar_bottom > a > i {
   margin: 0 !important;
+
   line-height: 1 !important;
 }
 
-/* =========================================================
-   BOUTON DE THÈME
-   ========================================================= */
+/* BOUTON DE THÈME */
 
 .sidebar .switch-theme {
   position: static !important;
   inset: auto !important;
+
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
@@ -394,6 +540,7 @@ ul#notif_list {
 .sidebar .switch-theme [data-theme-controls] {
   width: 36px !important;
   height: 36px !important;
+
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
@@ -401,19 +548,24 @@ ul#notif_list {
 
 .sidebar .color-scheme-toggle {
   position: static !important;
+
   appearance: none !important;
 }
 
 .sidebar .color-scheme-toggle .icon {
   display: none !important;
   place-items: center !important;
+
   width: 100% !important;
   height: 100% !important;
+
   margin: 0 !important;
+
   line-height: 1 !important;
 }
 
 /* Une seule icône : celle du thème actuellement sélectionné. */
+
 [data-color-scheme="light"] .sidebar .color-scheme-toggle .icon.light,
 [data-color-scheme="dark"] .sidebar .color-scheme-toggle .icon.dark {
   display: grid !important;
@@ -422,43 +574,56 @@ ul#notif_list {
 .sidebar .color-scheme-toggle .icon > i,
 .sidebar .color-scheme-toggle .icon > i::before {
   margin: 0 !important;
+
   font-size: 18px !important;
   line-height: 1 !important;
 }
 
-/* =========================================================
-   SWITCHEROO : CONTRÔLES PRINCIPAUX
-   ========================================================= */
+/* SWITCHEROO : CONTRÔLES PRINCIPAUX */
 
 .sidebar #switcheroo {
   position: static !important;
   inset: auto !important;
   z-index: auto !important;
+
   display: block !important;
+
   box-sizing: border-box;
   width: 36px !important;
   min-width: 36px !important;
   height: auto !important;
   min-height: 0 !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   background: transparent !important;
   border: 0 !important;
+
   transform: none !important;
 }
 
+/* Disposition verticale des contrôles du Switcheroo */
+
 .sidebar #switcheroo > .switcheroo__squircles {
   position: static !important;
+
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
+
   width: 36px !important;
   height: auto !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   gap: 7px !important;
+
   overflow: visible !important;
 }
+
+/* Masquer le logo et les séparateurs natifs */
 
 .sidebar #switcheroo .switcheroo__divider,
 .sidebar #switcheroo .switcheroo__logo {
@@ -468,10 +633,12 @@ ul#notif_list {
 .sidebar #switcheroo .cj-switcheroo-toggle {
   position: relative !important;
   inset: auto !important;
+
   overflow: visible !important;
 }
 
 /* Compte actif conservé dans la barre : avatar strictement limité au bouton. */
+
 .sidebar #switcheroo > .switcheroo__squircles
 > .switcheroo__squircle:not(.cj-switcheroo-toggle) {
   overflow: hidden !important;
@@ -482,6 +649,7 @@ ul#notif_list {
 .sidebar #switcheroo > .switcheroo__squircles
 > .switcheroo__squircle:not(.cj-switcheroo-toggle) .switcheroo__avatar img {
   display: block !important;
+
   box-sizing: border-box !important;
   width: 36px !important;
   min-width: 36px !important;
@@ -489,20 +657,22 @@ ul#notif_list {
   height: 36px !important;
   min-height: 36px !important;
   max-height: 36px !important;
+
   margin: 0 !important;
+
   object-fit: cover !important;
   object-position: center !important;
+
   border-radius: 8px !important;
 }
 
 /* Le libellé du bouton d’ouverture ne doit pas sortir de la sidebar. */
+
 .sidebar #switcheroo .cj-switcheroo-toggle > .switcheroo__popper {
   display: none !important;
 }
 
-/* =========================================================
-   SWITCHEROO : PANNEAU AVATAR + NOM
-   ========================================================= */
+/* SWITCHEROO : PANNEAU AVATAR + NOM */
 
 .sidebar #switcheroo .cj-switcheroo-dropdown {
   position: absolute !important;
@@ -510,19 +680,23 @@ ul#notif_list {
   right: calc(100% + 18px) !important;
   left: auto !important;
   z-index: 100000 !important;
+
   box-sizing: border-box !important;
   width: 250px !important;
   min-width: 250px !important;
   max-width: 250px !important;
   height: auto !important;
   max-height: none !important;
+
   padding: 10px !important;
   overflow: visible !important;
+
   color: var(--textColor) !important;
   background: var(--neutral, #f2efeb) !important;
   border: 1px solid rgba(90, 75, 68, .12) !important;
   border-radius: 11px !important;
   box-shadow: 0 10px 28px rgba(45, 35, 30, .18) !important;
+
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
@@ -533,6 +707,8 @@ ul#notif_list {
     transform .4s cubic-bezier(.22, 1, .36, 1),
     visibility 0s linear .4s !important;
 }
+
+/* Ouverture du panneau des comptes */
 
 .sidebar #switcheroo.cj-switcheroo-expanded .cj-switcheroo-dropdown,
 .sidebar #switcheroo .cj-switcheroo-toggle[aria-expanded="true"] .cj-switcheroo-dropdown {
@@ -546,21 +722,29 @@ ul#notif_list {
     visibility 0s !important;
 }
 
+/* Liste des comptes */
+
 .sidebar #switcheroo .cj-switcheroo-dropdown__list {
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
+
   box-sizing: border-box !important;
   width: 100% !important;
   min-width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   gap: 4px !important;
+
   overflow: visible !important;
+
   list-style: none !important;
+
   scrollbar-width: none !important;
 }
 
@@ -568,14 +752,18 @@ ul#notif_list {
   display: none !important;
 }
 
+/* Ligne de compte : avatar, nom et suppression */
+
 .sidebar #switcheroo .cj-switcheroo-dropdown__list > .switcheroo__squircle {
   position: relative !important;
   inset: auto !important;
+
   display: grid !important;
   flex: 0 0 54px !important;
   grid-template-columns: 40px minmax(0, 1fr) 20px !important;
   align-items: center !important;
   justify-content: stretch !important;
+
   box-sizing: border-box !important;
   width: 100% !important;
   min-width: 100% !important;
@@ -583,16 +771,21 @@ ul#notif_list {
   height: 54px !important;
   min-height: 54px !important;
   max-height: 54px !important;
+
   margin: 0 !important;
   padding: 6px 7px !important;
+
   column-gap: 12px !important;
+
   overflow: visible !important;
+
   color: inherit !important;
   background: transparent !important;
   border: 0 !important;
   border-radius: 8px !important;
   outline: 0 !important;
   box-shadow: none !important;
+
   cursor: pointer !important;
   opacity: 0;
   transform: translateX(10px);
@@ -609,6 +802,8 @@ ul#notif_list {
   opacity: 1;
   transform: translateX(0);
 }
+
+/* Apparition décalée des comptes */
 
 .sidebar #switcheroo.cj-switcheroo-expanded
 .cj-switcheroo-dropdown__list > :nth-child(2) {
@@ -635,9 +830,12 @@ ul#notif_list {
   background: rgba(189, 105, 54, .1) !important;
 }
 
+/* Avatar dans la liste des comptes */
+
 .sidebar #switcheroo .cj-switcheroo-dropdown .switcheroo__avatar {
   display: block !important;
   grid-column: 1 !important;
+
   box-sizing: border-box !important;
   width: 40px !important;
   min-width: 40px !important;
@@ -645,13 +843,16 @@ ul#notif_list {
   height: 40px !important;
   min-height: 40px !important;
   max-height: 40px !important;
+
   margin: 0 !important;
   overflow: hidden !important;
+
   border-radius: 7px !important;
 }
 
 .sidebar #switcheroo .cj-switcheroo-dropdown .switcheroo__avatar img {
   display: block !important;
+
   box-sizing: border-box !important;
   width: 40px !important;
   min-width: 40px !important;
@@ -659,10 +860,14 @@ ul#notif_list {
   height: 40px !important;
   min-height: 40px !important;
   max-height: 40px !important;
+
   margin: 0 !important;
+
   object-fit: cover !important;
+
   border: 0 !important;
   border-radius: 7px !important;
+
   transition: transform .3s ease !important;
 }
 
@@ -672,23 +877,29 @@ ul#notif_list {
 }
 
 /* Dans le panneau, l’ancien tooltip devient le nom du compte. */
+
 .sidebar #switcheroo .cj-switcheroo-dropdown
 .switcheroo__squircle > .switcheroo__popper {
   position: static !important;
   inset: auto !important;
+
   display: block !important;
   grid-column: 2 !important;
+
   width: 100% !important;
   min-width: 0 !important;
   max-width: none !important;
   height: auto !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   color: inherit !important;
   background: transparent !important;
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: none !important;
@@ -699,17 +910,24 @@ ul#notif_list {
 .sidebar #switcheroo .cj-switcheroo-dropdown
 .switcheroo__squircle > .switcheroo__popper::before {
   display: none !important;
+
   content: none !important;
 }
 
+/* Nom du compte et texte tronqué */
+
 .sidebar #switcheroo .cj-switcheroo-dropdown .switcheroo__popper-text {
   display: block !important;
+
   width: 100% !important;
   min-width: 0 !important;
+
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
+
   color: inherit !important;
+
   font-size: 13px !important;
   font-weight: 600 !important;
   line-height: 1.3 !important;
@@ -720,27 +938,37 @@ ul#notif_list {
   white-space: nowrap !important;
 }
 
+/* Icône du bouton d’ajout de compte */
+
 .sidebar #switcheroo .cj-switcheroo-dropdown
 .switcheroo__squircle--button > i {
   display: grid !important;
   grid-column: 1 !important;
   place-items: center !important;
+
   width: 40px !important;
   min-width: 40px !important;
   height: 40px !important;
+
   margin: 0 !important;
+
   color: var(--accentClr) !important;
+
   font-size: 20px !important;
   line-height: 1 !important;
 }
+
+/* Suppression d’un compte enregistré */
 
 .sidebar #switcheroo .cj-switcheroo-dropdown .switcheroo__delete {
   position: static !important;
   inset: auto !important;
   z-index: 20 !important;
+
   display: grid !important;
   grid-column: 3 !important;
   place-items: center !important;
+
   box-sizing: border-box !important;
   width: 20px !important;
   min-width: 20px !important;
@@ -748,15 +976,19 @@ ul#notif_list {
   height: 20px !important;
   min-height: 20px !important;
   max-height: 20px !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   color: #fff !important;
   background: var(--accentClr, #bd6936) !important;
   border: 0 !important;
   border-radius: 50% !important;
+
   font-size: 13px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
+
   opacity: .65 !important;
   visibility: visible !important;
   pointer-events: auto !important;
@@ -771,36 +1003,45 @@ ul#notif_list {
   transform: scale(1) !important;
 }
 
-/* =========================================================
-   SWITCHEROO : FENÊTRE DE CONNEXION
-   ========================================================= */
+/* SWITCHEROO : FENÊTRE DE CONNEXION */
 
 .monomer-overlay {
   position: fixed;
   inset: 0;
   z-index: 100001;
+
   visibility: hidden;
+
   background: rgba(0, 0, 0, .45);
+
   opacity: 0;
   pointer-events: none;
   transition: opacity .22s ease, visibility 0s linear .22s;
 }
+
+/* Fenêtre de connexion centrée */
 
 .monomer-modal {
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 100002;
+
   box-sizing: border-box;
+
   visibility: hidden;
+
   width: min(430px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
+
   padding: 30px;
   overflow-y: auto;
+
   color: var(--textColor);
   background: var(--neutral);
   border-radius: 12px;
   box-shadow: var(--shadowBox);
+
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -47%) scale(.98);
@@ -809,6 +1050,8 @@ ul#notif_list {
     transform .3s cubic-bezier(.22, 1, .36, 1),
     visibility 0s linear .3s;
 }
+
+/* État ouvert de la fenêtre et du voile */
 
 .monomer-overlay.monomer-open,
 .monomer-modal.monomer-open {
@@ -822,15 +1065,19 @@ ul#notif_list {
   transform: translate(-50%, -50%) scale(1);
 }
 
+/* Champs du formulaire de connexion */
+
 .switcheroo__form-row {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
   margin-bottom: 18px;
 }
 
 .switcheroo__form-label {
   margin-bottom: 7px;
+
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -839,25 +1086,33 @@ ul#notif_list {
 .switcheroo__form-input {
   box-sizing: border-box;
   width: 100%;
+
   padding: 8px !important;
+
   color: var(--textColor);
   background: var(--neutral);
   border: var(--border);
   border-radius: 6px;
 }
 
+/* Bouton de connexion */
+
 .switcheroo__form-button {
   display: block;
+
   margin: 10px auto 0;
   padding: 7px 13px;
+
   color: var(--neutral);
   background: var(--accentClr);
   border: 0;
   border-radius: 8px;
   box-shadow: none;
+
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
+
   cursor: pointer;
 }
 
@@ -865,25 +1120,30 @@ ul#notif_list {
   background: var(--contrastLight);
 }
 
+/* Bouton de fermeture */
+
 .monomer-close {
   position: absolute;
   top: 8px;
   right: 8px;
+
   display: grid;
   place-items: center;
+
   width: 26px;
   height: 26px;
+
   padding: 0;
+
   color: var(--textColor);
   background: var(--neutralDark);
   border: 0;
   border-radius: 6px;
+
   cursor: pointer;
 }
 
-/* =========================================================
-   MODE SOMBRE DE LA SIDEBAR ET DU SWITCHEROO
-   ========================================================= */
+/* MODE SOMBRE DE LA SIDEBAR ET DU SWITCHEROO */
 
 [data-color-scheme="dark"] .sidebar {
   background: #111217 !important;
@@ -915,9 +1175,7 @@ ul#notif_list {
   background: rgba(101, 114, 243, .14) !important;
 }
 
-/* =========================================================
-   FORUMACTIF MESSENGER
-   ========================================================= */
+/* FORUMACTIF MESSENGER */
 
 #FAM {
   --fam-accent: #bd6936;
@@ -928,29 +1186,38 @@ ul#notif_list {
   --fam-text: #302c2a;
   --fam-muted: #8d827b;
   --fam-line: rgba(48, 44, 42, .12);
+
   position: fixed !important;
   right: 75px !important;
   bottom: 18px !important;
   z-index: 99999 !important;
+
   display: flex !important;
   flex-direction: column;
+
   width: min(430px, calc(100vw - 105px)) !important;
   height: min(610px, calc(100vh - 36px)) !important;
   max-width: calc(100vw - 90px) !important;
   max-height: calc(100vh - 36px) !important;
+
   overflow: hidden;
+
   color: var(--fam-text) !important;
   background: var(--fam-bg) !important;
   /*border: 1px solid var(--fam-line) !important;
   border-radius: 18px !important;
   box-shadow: 0 18px 50px rgba(35, 28, 24, .22) !important;*/
+
   font-family: inherit !important;
+
   transform-origin: right bottom;
   transition:
     opacity .2s ease,
     transform .2s ease,
     visibility .2s ease !important;
 }
+
+/* MESSENGER MODE SOMBRE */
 
 [data-color-scheme="dark"] #FAM {
   --fam-accent: #6572f3;
@@ -961,8 +1228,11 @@ ul#notif_list {
   --fam-text: #eeeef3;
   --fam-muted: #999ba8;
   --fam-line: rgba(255, 255, 255, .09);
+
   box-shadow: 0 18px 55px rgba(0, 0, 0, .5) !important;
 }
+
+/* MESSENGER OUVERTURE ET FERMETURE */
 
 #FAM[data-hidden="true"] {
   visibility: hidden !important;
@@ -978,8 +1248,11 @@ ul#notif_list {
   transform: translateX(0) scale(1) !important;
 }
 
+/* MESSENGER BARRE SUPÉRIEURE */
+
 #FAM-toolbar {
   flex: 0 0 auto;
+
   background: var(--fam-panel) !important;
   border-bottom: 1px solid var(--fam-line) !important;
 }
@@ -987,17 +1260,26 @@ ul#notif_list {
 #FAM-toolbar-inner {
   display: flex !important;
   align-items: center;
+
   min-height: 56px;
+
   padding: 0 14px !important;
+
   gap: 10px;
 }
 
+/* Titre de la messagerie */
+
 #FAM .FAM-maintitle {
   flex: 1;
+
   min-width: 0;
+
   margin: 0 !important;
   overflow: hidden;
+
   color: var(--fam-text) !important;
+
   font-size: 13px !important;
   font-weight: 800 !important;
   letter-spacing: .06em;
@@ -1006,32 +1288,44 @@ ul#notif_list {
   white-space: nowrap;
 }
 
+/* Boutons de la barre supérieure */
+
 #FAM .FAM-toolbar-button {
   display: grid !important;
   flex: 0 0 34px;
   place-items: center;
+
   width: 34px !important;
   height: 34px !important;
+
   color: var(--fam-accent) !important;
   background: transparent !important;
   border-radius: 9px;
+
   cursor: pointer;
   transition: background-color .18s ease, transform .18s ease;
 }
 
 #FAM .FAM-toolbar-button:hover {
   background: var(--fam-accent-soft) !important;
+
   transform: translateY(-1px);
 }
+
+/* MESSENGER MENU DES OPTIONS */
 
 #FAM-menu {
   position: absolute !important;
   top: 49px !important;
   right: 12px !important;
   z-index: 10;
+
   display: flex;
+
   padding: 7px !important;
+
   gap: 5px;
+
   background: var(--fam-panel) !important;
   border: 1px solid var(--fam-line) !important;
   border-radius: 12px !important;
@@ -1041,11 +1335,14 @@ ul#notif_list {
 #FAM .FAM-menu-option {
   display: grid !important;
   place-items: center;
+
   width: 34px !important;
   height: 34px !important;
+
   color: var(--fam-muted) !important;
   background: transparent !important;
   border-radius: 8px;
+
   cursor: pointer;
 }
 
@@ -1054,19 +1351,27 @@ ul#notif_list {
   background: var(--fam-accent-soft) !important;
 }
 
+/* Avatar dans le menu */
+
 #FAM-menu-avatar,
 #FAM-menu-avatar img {
   width: 28px !important;
   height: 28px !important;
+
   object-fit: cover;
+
   border-radius: 7px !important;
 }
+
+/* MESSENGER ONGLETS */
 
 #FAM-tab-container {
   display: flex !important;
   align-items: center;
   flex: 0 0 auto;
+
   min-height: 43px;
+
   background: var(--fam-panel) !important;
   border-bottom: 1px solid var(--fam-line) !important;
 }
@@ -1074,7 +1379,9 @@ ul#notif_list {
 #FAM-tabs {
   display: flex !important;
   flex: 1;
+
   min-width: 0;
+
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -1086,13 +1393,18 @@ ul#notif_list {
 #FAM .FAM-tab {
   display: flex !important;
   align-items: center;
+
   min-width: 130px;
   max-width: 190px;
+
   padding: 11px 13px !important;
+
   gap: 8px;
+
   color: var(--fam-muted) !important;
   background: transparent !important;
   border-right: 1px solid var(--fam-line) !important;
+
   cursor: pointer;
 }
 
@@ -1107,14 +1419,20 @@ ul#notif_list {
   background: var(--fam-hover) !important;
 }
 
+/* Nom de l’onglet */
+
 #FAM .FAM-tab-name {
   flex: 1;
+
   overflow: hidden;
+
   font-size: 12px;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Fermeture d’un onglet */
 
 #FAM .FAM-tab-close {
   opacity: .45;
@@ -1125,12 +1443,17 @@ ul#notif_list {
   opacity: 1;
 }
 
+/* Ajout d’un onglet */
+
 #FAM-tab-add {
   display: grid !important;
   flex: 0 0 42px;
   place-items: center;
+
   height: 42px;
+
   color: var(--fam-accent) !important;
+
   cursor: pointer;
 }
 
@@ -1138,27 +1461,37 @@ ul#notif_list {
   background: var(--fam-accent-soft) !important;
 }
 
+/* MESSENGER ZONE DE CONTENU */
+
 #FAM .FAM-container-content {
   display: flex !important;
   flex: 1 1 auto !important;
   flex-direction: column !important;
+
   min-height: 0 !important;
+
   overflow: hidden !important;
 }
 
 #FAM-content {
   flex: 1 1 auto !important;
+
   min-height: 0 !important;
   height: auto !important;
+
   padding: 6px !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
+
   background: var(--fam-bg) !important;
+
   scrollbar-color: var(--fam-accent) transparent;
   scrollbar-width: thin;
 }
+
+/* Barre de défilement */
 
 #FAM-content::-webkit-scrollbar {
   width: 6px;
@@ -1173,6 +1506,8 @@ ul#notif_list {
   border-radius: 10px;
 }
 
+/* MESSENGER LISTE DES CONVERSATIONS */
+
 #FAM .FAM-chat {
   display: grid !important;
   grid-template-columns: 46px minmax(0, 1fr);
@@ -1180,17 +1515,22 @@ ul#notif_list {
   align-items: center;
   column-gap: 10px;
   row-gap: 2px;
+
   width: 100%;
   min-height: 78px;
   height: auto !important;
+
   margin: 0 0 6px !important;
   padding: 8px 10px !important;
   overflow: hidden;
+
   box-sizing: border-box;
+
   color: var(--fam-text) !important;
   background: var(--fam-panel) !important;
   border: 1px solid transparent !important;
   border-radius: 13px !important;
+
   cursor: pointer;
   transition:
     color .2s ease,
@@ -1207,6 +1547,7 @@ ul#notif_list {
 #FAM .FAM-chat:focus-visible {
   background: var(--fam-hover) !important;
   border-color: var(--fam-accent) !important;
+
   transform: translateX(3px);
 }
 
@@ -1214,6 +1555,8 @@ ul#notif_list {
 #FAM .FAM-chat:focus-visible .FAM-chat-title {
   color: var(--fam-accent) !important;
 }
+
+/* Éléments natifs masqués dans les conversations */
 
 #FAM .FAM-chat-icon {
   display: none !important;
@@ -1223,57 +1566,82 @@ ul#notif_list {
   display: none !important;
 }
 
+/* Avatar de la conversation */
+
 #FAM .FAM-chat-avatar {
   position: static !important;
+
   grid-column: 1;
   grid-row: 1 / 3;
   align-self: center;
+
   width: 46px !important;
   height: 46px !important;
+
   margin: 0 !important;
   overflow: hidden;
+
   border-radius: 11px;
 }
 
 #FAM .FAM-chat-avatar img {
   display: block;
+
   width: 100% !important;
   height: 100% !important;
+
   object-fit: cover;
   object-position: center;
+
   border-radius: inherit;
 }
 
+/* Contenu et informations de la conversation */
+
 #FAM .FAM-chat-content {
   grid-column: 2;
+
   width: 100%;
   max-width: 100%;
   min-width: 0;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 2px;
+
   overflow: hidden;
 }
 
 #FAM .FAM-chat-title,
+/* Informations du dernier message */
+
 #FAM .FAM-chat-date {
   position: static !important;
   left: auto !important;
+
   width: auto !important;
   min-width: 0;
+
   padding: 0 !important;
+
   white-space: normal;
+
   overflow: visible;
 }
+
+/* Titre de la conversation */
 
 #FAM .FAM-chat-title {
   grid-column: 2;
   grid-row: 1;
   align-self: end;
   display: block;
+
   max-width: 100%;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 16px !important;
@@ -1287,44 +1655,60 @@ ul#notif_list {
   align-self: start;
   display: flex;
   flex-direction: column;
+
   width: 100% !important;
   max-width: 100%;
   min-width: 0;
+
   overflow: hidden !important;
+
   font-size: 13.5px !important;
   line-height: 1.3 !important;
+
   opacity: .78;
 }
 
 #FAM .FAM-chat-meta-main {
   display: flex;
   align-items: baseline;
+
   width: 100%;
   min-width: 0;
   max-width: 100%;
+
   overflow: hidden;
+
   white-space: nowrap;
 }
 
 #FAM .FAM-chat-topic {
   flex: 1 1 auto;
+
   min-width: 0;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 #FAM .FAM-chat-postdate {
   flex: 0 0 auto;
+
   white-space: nowrap;
 }
 
+/* Nom de la dernière personne à avoir posté */
+
 #FAM .FAM-chat-author {
   display: block;
+
   width: 100%;
   max-width: 100%;
   min-width: 0;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1335,13 +1719,18 @@ ul#notif_list {
 
 #FAM .FAM-chat-separator {
   padding: 0 .35em;
+
   opacity: .55;
 }
+
+/* MESSENGER CONVERSATIONS SUR MOBILE */
 
 @media (max-width: 520px) {
   #FAM .FAM-chat {
     grid-template-columns: 42px minmax(0, 1fr);
+
     min-height: 74px;
+
     padding: 7px 8px !important;
   }
 
@@ -1351,11 +1740,15 @@ ul#notif_list {
   }
 }
 
+/* MESSENGER MESSAGES */
+
 #FAM .FAM-msg {
   display: grid !important;
   grid-template-columns: 34px minmax(0, 1fr);
   align-items: end;
+
   margin: 12px 0 !important;
+
   gap: 9px;
 }
 
@@ -1363,7 +1756,9 @@ ul#notif_list {
 #FAM .FAM-msg-avatar img {
   width: 34px !important;
   height: 34px !important;
+
   object-fit: cover;
+
   border-radius: 10px !important;
 }
 
@@ -1371,15 +1766,20 @@ ul#notif_list {
   min-width: 0;
 }
 
+/* Nom de la personne et bulle du message */
+
 #FAM .FAM-msg-name {
   margin: 0 0 4px 4px;
+
   color: var(--fam-accent) !important;
+
   font-size: 13px !important;
   font-weight: 800 !important;
 }
 
 #FAM .FAM-msg-content {
   padding: 10px 12px !important;
+
   color: var(--fam-text) !important;
   background: var(--fam-panel) !important;
   border: 1px solid var(--fam-line) !important;
@@ -1391,27 +1791,38 @@ ul#notif_list {
   line-height: 1.55 !important;
 }
 
+/* Date du message */
+
 #FAM .FAM-msg-date {
   margin: 4px 0 0 4px;
+
   color: var(--fam-muted) !important;
+
   font-size: 11px !important;
 }
+
+/* Actions sur un message */
 
 #FAM .FAM-msg-actions {
   display: flex;
   justify-content: flex-end;
+
   margin-top: 6px;
+
   gap: 4px;
 }
 
 #FAM .FAM-msg-button {
   display: grid !important;
   place-items: center;
+
   width: 25px;
   height: 25px;
+
   color: var(--fam-muted) !important;
   background: transparent !important;
   border-radius: 7px;
+
   cursor: pointer;
 }
 
@@ -1420,9 +1831,13 @@ ul#notif_list {
   background: var(--fam-accent-soft) !important;
 }
 
+/* MESSENGER FORMULAIRE DE RÉPONSE */
+
 #FAM-actions {
   flex: 0 0 auto;
+
   padding: 10px !important;
+
   background: var(--fam-panel) !important;
   border-top: 1px solid var(--fam-line) !important;
 }
@@ -1431,6 +1846,7 @@ ul#notif_list {
 #FAM textarea,
 #FAM select {
   box-sizing: border-box;
+
   color: var(--fam-text) !important;
   background: var(--fam-bg) !important;
   border: 1px solid var(--fam-line) !important;
@@ -1440,8 +1856,11 @@ ul#notif_list {
 
 #FAM textarea {
   padding: 10px 12px !important;
+
   resize: none;
 }
+
+/* Champ actif */
 
 #FAM input:focus,
 #FAM textarea:focus,
@@ -1449,6 +1868,8 @@ ul#notif_list {
   border-color: var(--fam-accent) !important;
   box-shadow: 0 0 0 3px var(--fam-accent-soft) !important;
 }
+
+/* Boutons d’action de la messagerie */
 
 #FAM button,
 #FAM .FAM-button,
@@ -1458,18 +1879,21 @@ ul#notif_list {
   border: 0 !important;
   border-radius: 9px !important;
   box-shadow: none !important;
+
   font-weight: 700;
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* RESPONSIVE */
+
+/* SIDEBAR SUR ÉCRAN DE FAIBLE HAUTEUR */
 
 @media (max-height: 600px) {
   .sidebar {
     top: 60px !important;
     bottom: 10px !important;
+
     gap: 5px;
+
     transform: none;
   }
 
@@ -1479,6 +1903,7 @@ ul#notif_list {
 
   .sidebar #switcheroo .cj-switcheroo-dropdown {
     top: 0 !important;
+
     transform: translateX(14px) scale(.97) !important;
     transform-origin: right top !important;
   }
@@ -1489,15 +1914,21 @@ ul#notif_list {
   }
 }
 
+/* MESSENGER SUR PETIT ÉCRAN */
+
 @media (max-width: 650px) {
   #FAM {
     right: 68px !important;
     bottom: 10px !important;
+
     width: calc(100vw - 82px) !important;
     height: calc(100vh - 20px) !important;
+
     border-radius: 14px !important;
   }
 }
+
+/* SWITCHEROO SUR PETIT ÉCRAN */
 
 @media (max-width: 420px) {
   .sidebar #switcheroo .cj-switcheroo-dropdown {
@@ -1506,6 +1937,8 @@ ul#notif_list {
     max-width: calc(100vw - 100px) !important;
   }
 }
+
+/* RÉDUCTION DES ANIMATIONS */
 
 @media (prefers-reduced-motion: reduce) {
   .navbar a.mainmenu,
@@ -1517,26 +1950,30 @@ ul#notif_list {
   }
 }
 
-/* =========================================================
-   PASTILLE DE NOTIFICATION
-   ========================================================= */
+/* PASTILLE DE NOTIFICATION */
 
 .navbar #fa_notifications #notif_unread {
   display: none !important;
 }
 
+/* Apparence de la pastille */
+
 .navbar #fa_notifications::after {
   content: "";
+
   position: absolute !important;
   top: 5px !important;
   left: 23px !important;
   z-index: 5;
+
   box-sizing: border-box;
   width: 10px;
   height: 10px;
+
   background: var(--notif-dot);
   border: 2px solid var(--neutral);
   border-radius: 50%;
+
   opacity: 0;
   pointer-events: none;
   transform: scale(0);
@@ -1545,6 +1982,8 @@ ul#notif_list {
     transform .3s cubic-bezier(.22, 1, .36, 1);
 }
 
+/* Apparition de la pastille en présence de notifications */
+
 .navbar #fa_notifications.unread::after,
 .navbar #fa_notifications:has(#notif_unread:not(:empty))::after {
   opacity: 1;
@@ -1552,9 +1991,13 @@ ul#notif_list {
   animation: cj-notification-pop .35s cubic-bezier(.22, 1, .36, 1);
 }
 
+/* Couleur de la pastille en mode sombre */
+
 [data-color-scheme="dark"] .navbar #fa_notifications {
   --notif-dot: var(--contrastLight, #f4f1ed);
 }
+
+/* Animation de la pastille */
 
 @keyframes cj-notification-pop {
   0% {
@@ -1573,7 +2016,8 @@ ul#notif_list {
   }
 }
 
-/* Switcheroo — centrage forcé de l’avatar actif */
+/* SWITCHEROO : CENTRAGE DE L’AVATAR ACTIF */
+
 .sidebar #switcheroo > .switcheroo__squircles {
   align-items: center !important;
 }
@@ -1582,6 +2026,7 @@ ul#notif_list {
 > .switcheroo__squircle.active {
   position: relative !important;
   inset: auto !important;
+
   display: grid !important;
   place-items: center !important;
 
@@ -1596,7 +2041,9 @@ ul#notif_list {
   margin: 0 auto !important;
   padding: 0 !important;
   overflow: hidden !important;
+
   border-radius: 8px !important;
+
   transform: none !important;
 }
 
@@ -1604,12 +2051,16 @@ ul#notif_list {
 > .switcheroo__squircle.active > a {
   position: absolute !important;
   inset: 0 !important;
+
   display: grid !important;
   place-items: center !important;
+
   width: 36px !important;
   height: 36px !important;
+
   margin: 0 !important;
   padding: 0 !important;
+
   transform: none !important;
 }
 
@@ -1621,30 +2072,38 @@ ul#notif_list {
   inset: 0 !important;
 
   display: block !important;
+
   box-sizing: border-box !important;
   width: 36px !important;
   height: 36px !important;
 
   margin: auto !important;
   padding: 0 !important;
+
   object-fit: cover !important;
   object-position: center !important;
+
   border-radius: 8px !important;
+
   transform: none !important;
 }
 
-/* Messenger — supprimer uniquement la bordure au survol */
+/* MESSENGER : BORDURE AU SURVOL */
+
 #FAM .FAM-chat:hover,
 #FAM .FAM-chat:focus-visible {
   border-color: transparent !important;
 }
 
+/* BOUTON EN INCLUSIF */
 
-/* Bouton En Inclusif */
 #replaceButton {
   appearance: none;
+
   box-sizing: border-box;
+
   padding: 10px 15px !important;
+
   border: none;
   border-radius: var(--radius-normal, 5px);
 
@@ -1662,14 +2121,20 @@ ul#notif_list {
   transition: color 0.2s ease;
 }
 
+/* Survol du bouton inclusif */
+
 #replaceButton:hover:not(:disabled) {
   color: var(--accentClr);
 }
+
+/* Repère de navigation au clavier */
 
 #replaceButton:focus-visible {
   outline: 2px solid var(--accentClr);
   outline-offset: 3px;
 }
+
+/* Bouton inclusif pendant le chargement */
 
 #replaceButton:disabled {
   opacity: 0.5;
