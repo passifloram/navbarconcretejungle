@@ -38,6 +38,7 @@
    - SWITCHEROO : CENTRAGE DE L’AVATAR ACTIF
    - MESSENGER : BORDURE AU SURVOL
    - BOUTON EN INCLUSIF
+   - SWITCHEROO : PROBLEME DE CLIC MALGRE LE PANNEAU FERMÉ
    ========================================================== */
 
 
@@ -2139,4 +2140,20 @@ ul#notif_list {
 #replaceButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+
+/* SWITCHEROO : PROBLEME DE CLIC MALGRE LE PANNEAU FERMÉ */
+
+.sidebar #switcheroo:not(.cj-switcheroo-expanded)
+.cj-switcheroo-toggle:not([aria-expanded="true"])
+> .cj-switcheroo-dropdown {
+  display: none !important;
+}
+
+/* Positionner le panneau par rapport à son icône */
+
+.sidebar #switcheroo > .switcheroo__squircles
+> .switcheroo__squircle.cj-switcheroo-toggle {
+  position: relative !important;
 }
