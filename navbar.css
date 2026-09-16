@@ -1,3 +1,9 @@
+/* CONCRETE JUNGLE — CSS corrigé, 16 septembre 2026.
+   Remplace le fichier fourni n° 2.
+   Chargement actuel à conserver : 01 (import), puis 03, puis 02.
+   Conserver les autres imports et les balises de couleur existants.
+   Les variantes de thème, de disposition et de mobile sont conservées. */
+
 /* ==========================================================
    SOMMAIRE — MOTS-CLÉS POUR CTRL + F
    
@@ -40,6 +46,242 @@
    - BOUTON EN INCLUSIF
    - SWITCHEROO : PROBLEME DE CLIC MALGRE LE PANNEAU FERMÉ
    ========================================================== */
+
+/* ============== SWITCHEROO DEPLIANT ========== */
+
+#switcheroo {
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 999 !important;
+}
+
+#switcheroo > .switcheroo__squircles {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* ================== BOUTON D’OUVERTURE ============== */
+
+#switcheroo .cj-switcheroo-toggle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 25px !important;
+  min-width: 25px !important;
+  max-width: 25px !important;
+  height: 25px !important;
+  min-height: 25px !important;
+  max-height: 25px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--contrastLight) !important;
+  background: var(--neutral) !important;
+  border: 0 !important;
+  border-radius: var(--radius-mini) !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  overflow: visible !important;
+  transition: color .2s ease,
+    background .2s ease,
+    transform .2s ease !important;
+}
+
+#switcheroo .cj-switcheroo-toggle:hover {
+  color: var(--accentClr) !important;
+  background: var(--neutralDarker) !important;
+}
+
+#switcheroo .cj-switcheroo-toggle > i {
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+
+#switcheroo.cj-switcheroo-expanded .cj-switcheroo-toggle > i {
+  transform: rotate(180deg);
+}
+
+/* ================== CONTENEUR DU MENU VERTICAL =========== */
+
+#switcheroo .cj-switcheroo-dropdown {
+  position: absolute !important;
+  top: calc(100% + 7px) !important;
+  right: 0 !important;
+  left: auto !important;
+  z-index: 1000 !important;
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: min(320px, calc(100vh - 65px)) !important;
+  margin: 0 !important;
+  background: var(--neutral) !important;
+  border: 1px solid var(--neutralDarker) !important;
+  border-radius: var(--radius-mini) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25) !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-6px) scale(.96) !important;
+  transform-origin: top right !important;
+  transition: opacity .2s ease,
+    visibility 0s linear .2s,
+    transform .25s ease !important;
+}
+
+/* Menu ouvert */
+
+#switcheroo.cj-switcheroo-expanded .cj-switcheroo-dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+  transition: opacity .2s ease,
+    visibility 0s linear 0s,
+    transform .25s ease !important;
+}
+
+/* ============== LISTE VERTICALE =========== */
+
+#switcheroo .cj-switcheroo-dropdown__list {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* Comptes et bouton + dans le menu */
+
+#switcheroo .cj-switcheroo-dropdown__list [data-action="switcheroo"],
+#switcheroo .cj-switcheroo-dropdown__list [data-action="open-login"] {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+
+/* Images des comptes */
+
+#switcheroo .cj-switcheroo-dropdown__list .switcheroo__avatar,
+#switcheroo .cj-switcheroo-dropdown__list .switcheroo__avatar img {
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-mini) !important;
+}
+
+/* Barre de défilement */
+
+#switcheroo .cj-switcheroo-dropdown {
+  scrollbar-width: thin;
+  scrollbar-color: var(--contrastLighter)
+    transparent;
+}
+
+#switcheroo .cj-switcheroo-dropdown::-webkit-scrollbar {
+  width: 3px;
+}
+
+#switcheroo .cj-switcheroo-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#switcheroo .cj-switcheroo-dropdown::-webkit-scrollbar-thumb {
+  background: var(--contrastLighter);
+  border-radius: 10px;
+}
+
+/* Accessibilité */
+
+#switcheroo .cj-switcheroo-toggle:focus-visible {
+  outline: 1px solid var(--accentClr) !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #switcheroo .cj-switcheroo-toggle,
+  #switcheroo .cj-switcheroo-toggle > i,
+  #switcheroo .cj-switcheroo-dropdown {
+    transition: none !important;
+  }
+}
+
+/* Espacement vertical des comptes Switcheroo */
+
+#switcheroo .cj-switcheroo-dropdown__list {
+  gap: 9px !important;
+}
+
+#switcheroo .cj-switcheroo-dropdown__list [data-action="switcheroo"],
+#switcheroo .cj-switcheroo-dropdown__list [data-action="open-login"] {
+  flex: 0 0 30px !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+  margin: 0 !important;
+}
+
+/* L’avatar garde sa taille actuelle au centre de la zone */
+
+#switcheroo .cj-switcheroo-dropdown__list .switcheroo__avatar,
+#switcheroo .cj-switcheroo-dropdown__list .switcheroo__avatar img {
+  width: 25px !important;
+  min-width: 25px !important;
+  max-width: 25px !important;
+  height: 25px !important;
+  min-height: 25px !important;
+  max-height: 25px !important;
+}
+
+/* Le menu s’adapte aux zones légèrement plus larges */
+
+#switcheroo .cj-switcheroo-dropdown {
+  width: 44px !important;
+  min-width: 44px !important;
+  max-width: 44px !important;
+  padding: 6px !important;
+}
+
+#switcheroo .cj-switcheroo-dropdown__list {
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+}
+
+/* Switcheroo toujours au-dessus du bouton de bannière */
+
+html body#phpbb > nav#switcheroo.switcheroo,
+html body#phpbb > #switcheroo.switcheroo {
+  z-index: 2147483646 !important;
+  overflow: visible !important;
+}
+
+html body#phpbb > #switcheroo .switcheroo__squircles,
+html body#phpbb > #switcheroo .switcheroo__squircle {
+  z-index: 2147483647 !important;
+}
+
+/* Le bouton animé reste sous le Switcheroo */
+
+button.dark-banner-toggle {
+  z-index: 999 !important;
+}
 
 /* NAVBAR SUPÉRIEURE */
 
@@ -1402,7 +1644,6 @@ ul#notif_list {
   min-width: 0;
   padding: 0 !important;
   white-space: normal;
-  overflow: visible;
 }
 
 /* Titre de la conversation */
