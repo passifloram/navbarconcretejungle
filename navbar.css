@@ -2055,3 +2055,7 @@ ul#notif_list {
     margin-top: 0;
     margin-bottom: 5px;
 }
+
+#replaceButton.cj-inclusif-disponible {
+    margin-left: 12px !important;
+}
