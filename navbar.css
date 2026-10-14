@@ -1,8 +1,3 @@
-/* CONCRETE JUNGLE — CSS corrigé, 16 septembre 2026.
-   Remplace le fichier fourni n° 2.
-   Chargement actuel à conserver : 01 (import), puis 03, puis 02.
-   Conserver les autres imports et les balises de couleur existants.
-   Les variantes de thème, de disposition et de mobile sont conservées. */
 
 /* ==========================================================
    SOMMAIRE — MOTS-CLÉS POUR CTRL + F
@@ -2032,4 +2027,31 @@ ul#notif_list {
 
 .sidebar #switcheroo > .switcheroo__squircles > .switcheroo__squircle.cj-switcheroo-toggle {
   position: relative !important;
+}
+
+
+/* INCLUSIF : visible uniquement avec le formulaire de réponse */
+#replaceButton {
+    display: none !important;
+}
+
+#replaceButton.cj-inclusif-disponible {
+    display: inline-block !important;
+    position: static !important;
+    float: none !important;
+    margin: 0 0 0 6px !important;
+    vertical-align: middle;
+}
+
+/* NOTIFICATIONS : inverser l’ordre actuel */
+#fa_right.notification ul#notif_list {
+    flex-direction: column-reverse !important;
+}
+
+/* Garder « Voir toutes les notifications » en haut */
+#notif_list > li.see_all,
+#notif_list > li:has(.see_all) {
+    order: 1;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
